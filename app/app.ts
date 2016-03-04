@@ -2,9 +2,6 @@ import {App, Platform} from 'ionic-angular';
 import {HomePage} from './pages/home/home';
 
 import {provide} from 'angular2/core';
-import {FirebaseService} from 'firebase-angular2/core';
-
-declare var Firebase;
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
@@ -29,8 +26,6 @@ export class MyApp {
       // For example, we might change the StatusBar color. This one below is
       // good for dark backgrounds and light text:
       // StatusBar.setStyle(StatusBar.LIGHT_CONTENT)
-
-        provide(FirebaseService, {useFactory: () =>  new FirebaseService(new Firebase('https://YOUR-FIREBASE-URL.firebaseio.com/'))})
     });
   }
 }

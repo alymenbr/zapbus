@@ -1,4 +1,6 @@
 import {Page} from 'ionic-angular';
+import {IonicApp, NavController} from 'ionic-angular';
+import {Inject} from 'angular2/core';
 
 @Page({
   templateUrl: 'build/pages/home/home.html'
