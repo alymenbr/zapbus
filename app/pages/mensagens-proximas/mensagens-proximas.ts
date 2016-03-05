@@ -12,6 +12,9 @@ import {CriarMensagemPage} from '../criar-mensagem/criar-mensagem';
   templateUrl: 'build/pages/mensagens-proximas/mensagens-proximas.html',
 })
 export class MensagensProximasPage {
+
+  messages = ['Mensagem1', 'Mensagem2'];
+
   constructor( public nav: NavController) {
 
   }
