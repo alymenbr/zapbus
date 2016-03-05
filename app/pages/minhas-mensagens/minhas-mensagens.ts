@@ -1,4 +1,5 @@
 import {Page, NavController} from 'ionic-angular';
+import {DetalhesMensagemPage} from '../detalhes-mensagem/detalhes-mensagem';
 
 /*
   Generated class for the MinhasMensagensPage page.
@@ -12,6 +13,10 @@ import {Page, NavController} from 'ionic-angular';
 export class MinhasMensagensPage {
   constructor( public nav: NavController) {
 
+  }
+
+  openDetalhesMensagemPage(){
+    this.nav.push(DetalhesMensagemPage, {});
   }
 
 }

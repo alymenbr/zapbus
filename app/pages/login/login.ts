@@ -1,4 +1,5 @@
 import {Page, NavController} from 'ionic-angular';
+import {PrincipalPage} from '../principal/principal';
 
 /*
   Generated class for the LoginPage page.
@@ -12,6 +13,10 @@ import {Page, NavController} from 'ionic-angular';
 export class LoginPage {
   constructor( public nav: NavController) {
 
+  }
+
+  openPrincipalPage(){
+    this.nav.push(PrincipalPage, {});
   }
 
 }

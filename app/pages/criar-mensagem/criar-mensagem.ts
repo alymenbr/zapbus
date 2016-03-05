@@ -14,4 +14,9 @@ export class CriarMensagemPage {
 
   }
 
+  salvarMensagem(){
+    /* TODO */
+    this.nav.pop()
+  }
+
 }

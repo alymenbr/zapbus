@@ -1,4 +1,6 @@
 import {Page, NavController} from 'ionic-angular';
+import {MensagensProximasPage} from '../mensagens-proximas/mensagens-proximas';
+import {MinhasMensagensPage} from '../minhas-mensagens/minhas-mensagens';
 
 /*
   Generated class for the PrincipalPage page.
@@ -14,4 +16,11 @@ export class PrincipalPage {
 
   }
 
+  openMensagensProximasPage(){
+    this.nav.push(MensagensProximasPage, {});
+  }
+
+  openMinhasMensagensPage(){
+    this.nav.push(MinhasMensagensPage, {});
+  }
 }

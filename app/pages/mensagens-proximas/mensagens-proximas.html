@@ -9,5 +9,11 @@
 </ion-navbar>
 
 <ion-content padding class="mensagens-proximas">
-  
+  <p>Estas mensagens foram deixadas por outros passageiros perto de onde você está agora!</p>
+  <ul>
+    <li>Mensagem1</li>
+    <li>Mensagem2</li>
+  </ul>
+  <button danger block (click)="openCriarMensagemPage()">Criar nova mensagem</button>
+  <button primary block (click)="openDetalhesMensagemPage()">Detalhes da mensagem</button>
 </ion-content>
