@@ -1,5 +1,6 @@
 import {Page, NavController} from 'ionic-angular';
 import {DetalhesMensagemPage} from '../detalhes-mensagem/detalhes-mensagem';
+import {MessageService} from '../../providers/message-service/message-service';
 
 /*
   Generated class for the MinhasMensagensPage page.
@@ -9,14 +10,22 @@ import {DetalhesMensagemPage} from '../detalhes-mensagem/detalhes-mensagem';
 */
 @Page({
   templateUrl: 'build/pages/minhas-mensagens/minhas-mensagens.html',
+  providers: [MessageService]
 })
 export class MinhasMensagensPage {
-  constructor( public nav: NavController) {
 
+  messages;
+
+  constructor( public nav: NavController, public msgService: MessageService) {
+    this.carregarMensagens();
   }
 
-  openDetalhesMensagemPage(){
-    this.nav.push(DetalhesMensagemPage, {});
+  carregarMensagens() {
+    this.messages = this.msgService.getMinhasMensagens();
+  }
+
+  openDetalhesMensagemPage(currentMessage){
+    this.nav.push(DetalhesMensagemPage, {message: currentMessage});
   }
 
 }

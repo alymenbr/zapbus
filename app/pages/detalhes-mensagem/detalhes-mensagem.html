@@ -9,15 +9,14 @@
 </ion-navbar>
 
 <ion-content padding class="detalhes-mensagem">
-  <p>-Mensagem-</p>
-    <p>Deixada por Maria em 2 de Maio</p>
+  <p>-{{message.detail}}-</p>
+    <p>Deixada por {{message.author}} em {{message.date}}</p>
     <p>-Aprovar- -Reprovar-</p>
-    <p>6 Aprovações, 1 Reprovação, 4 Pontos</p>
-    <p>Mapa</p>
+    <p>{{message.approvals}} Aprovações, {{message.reprovals}} Reprovação, {{message.points}} Pontos</p>
+    <p>{{message.mapUrl}}</p>
     <p>Forum de Discussão</p>
     <ul>
-      <li>Mensagem1</li>
-      <li>Mensagem2</li>
+      <li *ngFor="#comment of message.comments">{{comment.detail}}</li>
     </ul>
     <p>Enviar mensagem</p>
   <p></p>

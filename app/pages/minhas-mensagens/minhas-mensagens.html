@@ -10,9 +10,11 @@
 
 <ion-content padding class="minhas-mensagens">
   <p>Encontre aqui as mensagens que você criou ou aprovou!</p>
-  <ul>
-    <li>Mensagem1</li>
-    <li>Mensagem2</li>
-  </ul>
-  <button primary block (click)="openDetalhesMensagemPage()">Detalhes da mensagem</button>
+
+  <ion-list>
+    <ion-item *ngFor="#msg of messages" (click)="openDetalhesMensagemPage(msg)">
+      {{msg.detail}}
+    </ion-item>
+  </ion-list>
+
 </ion-content>

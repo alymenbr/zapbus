@@ -1,4 +1,5 @@
-import {Page, NavController} from 'ionic-angular';
+import {Page, NavController, NavParams} from 'ionic-angular';
+import {Message, MessageService} from '../../providers/message-service/message-service';
 
 /*
   Generated class for the DetalhesMensagemPage page.
@@ -8,10 +9,14 @@ import {Page, NavController} from 'ionic-angular';
 */
 @Page({
   templateUrl: 'build/pages/detalhes-mensagem/detalhes-mensagem.html',
+  providers: [MessageService]
 })
 export class DetalhesMensagemPage {
-  constructor( public nav: NavController) {
 
+  message: Message;
+
+  constructor( public nav: NavController, public params: NavParams, public messageService: MessageService) {
+    this.message = params.get('message');
   }
 
 }
