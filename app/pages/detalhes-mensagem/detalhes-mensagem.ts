@@ -1,5 +1,6 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {Message, MessageService} from '../../providers/message-service/message-service';
+import {MessageService} from '../../providers/message-service/message-service';
+import {Message} from '../../models/message/message';
 
 /*
   Generated class for the DetalhesMensagemPage page.

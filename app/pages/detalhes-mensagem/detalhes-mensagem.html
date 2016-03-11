@@ -5,19 +5,56 @@
   Ionic pages and navigation.
 -->
 <ion-navbar *navbar>
-  <ion-title>detalhes-mensagem</ion-title>
+  <ion-title>Detalhes da Mensagem</ion-title>
 </ion-navbar>
 
+
+<!-- TODO: Imagem de fundo do Streetview:
+  http://stackoverflow.com/questions/30870083/nearest-street-view-photo-to-coordinates
+-->
 <ion-content padding class="detalhes-mensagem">
-  <p>-{{message.detail}}-</p>
-    <p>Deixada por {{message.author}} em {{message.date}}</p>
-    <p>-Aprovar- -Reprovar-</p>
-    <p>{{message.approvals}} Aprovações, {{message.reprovals}} Reprovação, {{message.points}} Pontos</p>
-    <p>{{message.mapUrl}}</p>
-    <p>Forum de Discussão</p>
-    <ul>
-      <li *ngFor="#comment of message.comments">{{comment.detail}}</li>
-    </ul>
-    <p>Enviar mensagem</p>
-  <p></p>
+
+  <ion-card>
+    <img src={{message.mapUrl}}/>
+
+    <ion-card-content>
+      <h2 class="card-title">{{message.detail}}</h2>
+      <p>Deixado por <em primary>{{message.authorName}}</em> em {{message.date}}</p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+       <ion-col>
+         <button large primary>
+           <ion-icon name='thumbs-up'></ion-icon>
+           Aprovar
+         </button>
+       </ion-col>
+       <ion-col text-right>
+         <button large danger>
+           <ion-icon name='thumbs-down'></ion-icon>
+           Reprovar
+         </button>
+       </ion-col>
+     </ion-row>
+
+     <ion-item>
+         <button primary clear item-left>
+           <ion-icon name="thumbs-up"></ion-icon>
+           <div>12</div>
+         </button>
+         <button danger clear item-left>
+           <ion-icon name="thumbs-down"></ion-icon>
+           <div>4</div>
+         </button>
+         <ion-note item-right>
+           5 pontos
+         </ion-note>
+       </ion-item>
+
+  </ion-card>
+
+
+  <ion-card>
+    <h2>TODO: Fórum de Discussão</h2>
+  </ion-card>
 </ion-content>

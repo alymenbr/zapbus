@@ -1,41 +1,6 @@
 import {Injectable, Inject} from 'angular2/core';
 import {Http} from 'angular2/http';
-
-export class Comments {
-  constructor(  public sequence: number,
-                public detail: string,
-                public author: string,
-                public date: Date){}
-}
-
-export class Message {
-  detail: string;
-  author: string;
-  date: Date;
-  approvals: number;
-  reprovals: number;
-  points: number;
-  coordinates: string;
-  mapUrl: string ;
-  comments: Array<Comments>;
-
-  constructor(  newDetail: string, newAuthor: string){
-                  this.detail = newDetail;
-                  this.author = newAuthor;
-                  this.date = new Date();
-                  this.approvals = 1;
-                  this.reprovals = 0
-                  this.points = 1;
-                  this.coordinates = 'Coordenadas'
-                  this.mapUrl = 'Mapa'
-                  this.comments = Array<Comments>();
-                }
-
-    /* TODO: Saber se quem fez +1 foi o usuário atual */
-    /* TODO: Saber se quem fez -1 foi o usuário atual */
-    /* TODO: Saber a linha de ônibus da mensagem */
-    /* Deixar mensagens iniciais nas corrdenadas de cada capital */
-}
+import {Message} from '../../models/message/message';
 
 /*
   Generated class for the MessageService provider.
@@ -51,11 +16,13 @@ export class MessageService {
   }
 
   getMensagensProximas(){
-    return [new Message('Mensagem1', 'Autor1'), new Message('Mensagem2', 'Autor2')];
+    return [  new Message('O motorista de 7:15h é muito mal educado!', 'Tiffany'),
+              new Message('O motorista de 20:00h é tão rápido quanto meus punhos!', 'McGreggor')];
   }
 
   getMinhasMensagens(){
-    return [new Message('Minha1', 'Eu'), new Message('Minha2', 'Eu2')];
+    return [  new Message('O motorista de 7:15h é muito mal educado!', 'Tiffany'),
+              new Message('O motorista de 20:00h é tão rápido quanto meus punhos!', 'McGreggor')];
   }
 /*
   data;

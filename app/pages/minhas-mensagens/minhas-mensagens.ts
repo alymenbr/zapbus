@@ -1,6 +1,7 @@
 import {Page, NavController} from 'ionic-angular';
 import {DetalhesMensagemPage} from '../detalhes-mensagem/detalhes-mensagem';
 import {MessageService} from '../../providers/message-service/message-service';
+import {Message} from '../../models/message/message';
 
 /*
   Generated class for the MinhasMensagensPage page.
@@ -14,7 +15,7 @@ import {MessageService} from '../../providers/message-service/message-service';
 })
 export class MinhasMensagensPage {
 
-  messages;
+  messages: Array<Message>;
 
   constructor( public nav: NavController, public msgService: MessageService) {
     this.carregarMensagens();

@@ -2,6 +2,7 @@ import {Page, NavController} from 'ionic-angular';
 import {DetalhesMensagemPage} from '../detalhes-mensagem/detalhes-mensagem';
 import {MessageService} from '../../providers/message-service/message-service';
 import {CriarMensagemPage} from '../criar-mensagem/criar-mensagem';
+import {Message} from '../../models/message/message';
 
 /*
   Generated class for the MensagensProximasPage page.
@@ -15,7 +16,7 @@ import {CriarMensagemPage} from '../criar-mensagem/criar-mensagem';
 })
 export class MensagensProximasPage {
 
-  messages;
+  messages: Array<Message>;
 
   constructor( public nav: NavController, public msgService: MessageService) {
     this.carregarMensagens();
