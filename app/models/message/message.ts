@@ -1,6 +1,7 @@
 import {Comment} from '../comment/comment';
 
 export class Message {
+  linhaOnibus: string
   detail: string;
   authorName: string;
   avatarUrl: string;
@@ -13,6 +14,7 @@ export class Message {
   comments: Array<Comment>;
 
   constructor(  newDetail: string, newAuthor: string){
+                  this.linhaOnibus = '5102A';
                   this.detail = newDetail;
                   this.authorName = newAuthor;
                   this.avatarUrl = 'img/avatar.png';

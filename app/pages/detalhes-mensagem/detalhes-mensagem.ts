@@ -14,10 +14,10 @@ import {Message} from '../../models/message/message';
 })
 export class DetalhesMensagemPage {
 
-  message: Message;
+  msg: Message;
 
   constructor( public nav: NavController, public params: NavParams, public messageService: MessageService) {
-    this.message = params.get('message');
+    this.msg = params.get('message');
   }
 
 }

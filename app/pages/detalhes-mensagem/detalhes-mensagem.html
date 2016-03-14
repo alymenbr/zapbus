@@ -15,11 +15,19 @@
 <ion-content padding class="detalhes-mensagem">
 
   <ion-card>
-    <img src={{message.mapUrl}}/>
+    <ion-item>
+      <ion-avatar item-left>
+        <img src={{msg.avatarUrl}}/>
+      </ion-avatar>
+        <p>mensagem de <em primary>{{msg.authorName}}</em> em</p>
+        <ion-badge secondary item-right>{{msg.linhaOnibus}}</ion-badge>
+    </ion-item>
+
+    <img src={{msg.mapUrl}}/>
 
     <ion-card-content>
-      <h2 class="card-title">{{message.detail}}</h2>
-      <p>Deixado por <em primary>{{message.authorName}}</em> em {{message.date}}</p>
+      <h2 class="card-title">{{msg.detail}}</h2>
+      <p>Deixado em {{msg.date}}</p>
     </ion-card-content>
 
     <ion-row no-padding>
@@ -53,8 +61,41 @@
 
   </ion-card>
 
-
   <ion-card>
-    <h2>TODO: Fórum de Discussão</h2>
+    <ion-list>
+
+      <ion-list-header>
+      Today
+      </ion-list-header>
+
+      <ion-item>
+        <ion-avatar item-left>
+          <img src={{msg.avatarUrl}}>
+        </ion-avatar>
+        <h2>Finn</h2>
+        <h3>Don't Know What To Do!</h3>
+        <p>I've had a pretty messed up day. If we just...</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-avatar item-left>
+          <img src={{msg.avatarUrl}}>
+        </ion-avatar>
+        <h2>Han</h2>
+        <h3>Look, Kid</h3>
+        <p>I've got enough on my plate as it is, and I...</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-avatar item-left>
+          <img src={{msg.avatarUrl}}>
+        </ion-avatar>
+        <h2>Rey</h2>
+        <h3>Found Something</h3>
+        <p>Was scavaging around the other day and...</p>
+      </ion-item>
+
+    </ion-list>
   </ion-card>
+
 </ion-content>
