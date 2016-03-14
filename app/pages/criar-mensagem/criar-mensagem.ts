@@ -1,4 +1,5 @@
 import {Page, NavController} from 'ionic-angular';
+import {MessageService} from '../../providers/message-service/message-service';
 
 /*
   Generated class for the CriarMensagemPage page.
@@ -8,14 +9,22 @@ import {Page, NavController} from 'ionic-angular';
 */
 @Page({
   templateUrl: 'build/pages/criar-mensagem/criar-mensagem.html',
+  providers: [MessageService]  
 })
 export class CriarMensagemPage {
-  constructor( public nav: NavController) {
+
+  linhaOnibus: string;
+  novaMensagem: string;
+
+  constructor( public nav: NavController, public messageService: MessageService) {
 
   }
 
-  salvarMensagem(){
-    /* TODO */
+  saveMessage(){
+    this.messageService.addMessage(this.linhaOnibus, this.novaMensagem);
+    this.linhaOnibus = '';
+    this.novaMensagem = '';
+
     this.nav.pop()
   }
 

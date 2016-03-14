@@ -9,10 +9,10 @@
 </ion-navbar>
 
 <ion-content padding class="minhas-mensagens">
-  <p>Encontre aqui as mensagens que você criou ou aprovou!</p>
+  <p>Encontre aqui as mensagens que você criou, aprovou ou comentou!</p>
 
   <ion-card *ngFor="#msg of messages" (click)="openDetalhesMensagemPage(msg)">
-    <ion-item>
+    <ion-item text-wrap>
       <ion-avatar item-left>
         <img src={{msg.avatarUrl}} />
       </ion-avatar>

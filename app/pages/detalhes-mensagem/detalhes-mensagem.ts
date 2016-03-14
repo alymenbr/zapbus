@@ -15,9 +15,24 @@ import {Message} from '../../models/message/message';
 export class DetalhesMensagemPage {
 
   msg: Message;
+  novoComentario: string;
 
   constructor( public nav: NavController, public params: NavParams, public messageService: MessageService) {
     this.msg = params.get('message');
   }
+
+  sendComment(){
+    this.messageService.addComment(this.msg, this.novoComentario);
+    this.novoComentario = '';
+  }
+
+  approveMessage(){
+    this.messageService.approveMessage(this.msg);
+  }
+
+  reproveMessage(){
+    this.messageService.reproveMessage(this.msg);
+  }
+
 
 }

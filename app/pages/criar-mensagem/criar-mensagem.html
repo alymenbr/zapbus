@@ -5,12 +5,22 @@
   Ionic pages and navigation.
 -->
 <ion-navbar *navbar>
-  <ion-title>criar-mensagem</ion-title>
+  <ion-title>Crie uma mensagem</ion-title>
 </ion-navbar>
 
 <ion-content padding class="criar-mensagem">
-  <p>Mapa</p>
-  <p>Linha de Onibus</p>
-  <p>Mensagem</p>
-  <button primary block (click)="salvarMensagem()">Criar Agora!</button>
+  <p>Sua mensagem ficará visível para todos os passageiros próximos a onde seu ônibus está agora!</p>
+  <img src='img/maps.png'/>
+
+  <ion-item>
+    <ion-label stacked>Linha de ônibus:</ion-label>
+    <ion-input maxlength="10" [(ngModel)]="linhaOnibus" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Mensagem</ion-label>
+    <ion-input maxlength="140" [(ngModel)]="novaMensagem" type="text"></ion-input>
+  </ion-item>
+
+  <button secondary large block (click)="saveMessage()">Criar Agora!</button>
 </ion-content>

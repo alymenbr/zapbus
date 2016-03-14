@@ -1,6 +1,7 @@
 import {Injectable, Inject} from 'angular2/core';
 import {Http} from 'angular2/http';
 import {Message} from '../../models/message/message';
+import {Comment} from '../../models/comment/comment';
 
 /*
   Generated class for the MessageService provider.
@@ -11,18 +12,40 @@ import {Message} from '../../models/message/message';
 @Injectable()
 export class MessageService {
 
+  static mockMessageList = [  new Message('5102A', 'O motorista de 7:15h é muito mal educado!', 'Tiffany'),
+                              new Message('SC03D', 'O motorista de 20:00h é tão rápido quanto meus punhos!', 'McGreggor')];
+
   constructor(public http: Http) {
     /* CAREFUL! WILL BE CALLED ON EACH PAGE CONSTRUCTOR */
   }
 
   getMensagensProximas(){
-    return [  new Message('O motorista de 7:15h é muito mal educado!', 'Tiffany'),
-              new Message('O motorista de 20:00h é tão rápido quanto meus punhos!', 'McGreggor')];
+    return MessageService.mockMessageList;
   }
 
   getMinhasMensagens(){
-    return [  new Message('O motorista de 7:15h é muito mal educado!', 'Tiffany'),
-              new Message('O motorista de 20:00h é tão rápido quanto meus punhos!', 'McGreggor')];
+    return MessageService.mockMessageList;
+  }
+
+  addMessage(busLine: string, msgDetail: string){
+    var newMessage = new Message(busLine, msgDetail, 'Eu');
+    MessageService.mockMessageList.push(newMessage);
+  }
+
+  addComment(message: Message, comment: string){
+    var newComment = new Comment('Eu', 'img/avatar.png', comment);
+    message.comments.push(newComment);
+  }
+
+  approveMessage(message: Message){
+    message.approvals++;
+    message.points++;
+  }
+
+  reproveMessage(message: Message){
+    message.reprovals++;
+    message.points--;
+    message.points--;
   }
 /*
   data;

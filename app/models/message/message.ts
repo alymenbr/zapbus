@@ -13,8 +13,8 @@ export class Message {
   mapUrl: string ;
   comments: Array<Comment>;
 
-  constructor(  newDetail: string, newAuthor: string){
-                  this.linhaOnibus = '5102A';
+  constructor(  busLine: string, newDetail: string, newAuthor: string){
+                  this.linhaOnibus = busLine;
                   this.detail = newDetail;
                   this.authorName = newAuthor;
                   this.avatarUrl = 'img/avatar.png';
@@ -30,5 +30,6 @@ export class Message {
     /* TODO: Saber se quem fez +1 foi o usuário atual */
     /* TODO: Saber se quem fez -1 foi o usuário atual */
     /* TODO: Saber a linha de ônibus da mensagem */
-    /* Deixar mensagens iniciais nas corrdenadas de cada capital */
+    /* Deixar mensagens iniciais nas coordenadas de cada capital */
+    /* Adicionar comentários */
 }
