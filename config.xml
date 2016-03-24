@@ -26,4 +26,8 @@
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
+    <plugin name="cordova-plugin-facebook4" spec="~1.7.0">
+        <variable name="APP_ID" value="1976368085920808" />
+        <variable name="APP_NAME" value="ZapBus" />
+    </plugin>
 </widget>

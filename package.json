@@ -26,7 +26,15 @@
   },
   "name": "zapbus",
   "description": "zapbus: An Ionic project",
-  "cordovaPlugins": [],
+  "cordovaPlugins": [
+    {
+      "variables": {
+        "APP_ID": "1976368085920808",
+        "APP_NAME": "ZapBus"
+      },
+      "locator": "cordova-plugin-facebook4",
+      "id": "cordova-plugin-facebook4"
+    },
   "cordovaPlatforms": [
     "android"
   ]

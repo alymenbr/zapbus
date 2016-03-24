@@ -12,13 +12,13 @@
   <p>Encontre aqui as mensagens que você criou, aprovou ou comentou!</p>
 
   <ion-card *ngFor="#msg of messages" (click)="openDetalhesMensagemPage(msg)">
+
     <ion-item text-wrap>
-      <ion-avatar item-left>
-        <img src={{msg.avatarUrl}} />
-      </ion-avatar>
+      <ion-badge secondary item-left>{{msg.linhaOnibus}}</ion-badge>
       <h4>{{msg.detail}}</h4>
-      <p>Deixado por <em primary>{{msg.authorName}}</em> em {{msg.date}}</p>
+      <p>Deixado por <em primary>{{msg.authorName}}</em> em {{msg.date | date:'yMMMddHHmm' }}</p>
     </ion-item>
+    
   </ion-card>
 
 </ion-content>
