@@ -34,7 +34,7 @@
       },
       "locator": "cordova-plugin-facebook4",
       "id": "cordova-plugin-facebook4"
-    },
+    } ],
   "cordovaPlatforms": [
     "android"
   ]
