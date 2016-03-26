@@ -34,8 +34,12 @@
       },
       "locator": "cordova-plugin-facebook4",
       "id": "cordova-plugin-facebook4"
-    } ],
+    },
+    "cordova-plugin-geolocation",
+    "cordova-plugin-whitelist"
+  ],
   "cordovaPlatforms": [
+    "ios",
     "android"
   ]
 }
