@@ -1,16 +1,24 @@
 import {App, Platform} from 'ionic-angular';
+import {UserService} from "./providers/user-service/user-service";
+import {PrincipalPage} from './pages/principal/principal';
 import {LoginPage} from './pages/login/login';
 
 import {provide} from 'angular2/core';
 
 @App({
+  providers: [UserService],
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
   rootPage: any = LoginPage;
 
-  constructor(platform: Platform) {
+  constructor(platform: Platform, userService: UserService) {
+    
+    if( userService.isLoggedIn() || !platform.is('cordova') ){
+      this.rootPage = PrincipalPage;
+    }
+
     platform.ready().then(() => {
       // The platform is now ready. Note: if this callback fails to fire, follow
       // the Troubleshooting guide for a number of possible solutions:
@@ -26,6 +34,9 @@ export class MyApp {
       // For example, we might change the StatusBar color. This one below is
       // good for dark backgrounds and light text:
       // StatusBar.setStyle(StatusBar.LIGHT_CONTENT)
+
+
+
     });
   }
 }

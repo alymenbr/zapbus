@@ -15,7 +15,7 @@ export class UserService{
   }
 
   isLoggedIn(){
-    return UserService.currentUser;
+    return UserService.currentUser? true: false;
   }
 
   loadUser(){

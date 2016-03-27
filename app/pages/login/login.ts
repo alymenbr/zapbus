@@ -1,3 +1,4 @@
+import {Platform} from 'ionic-angular';
 import {Page, NavController} from 'ionic-angular';
 import {UserService} from "../../providers/user-service/user-service";
 import {PrincipalPage} from '../principal/principal';
@@ -13,11 +14,7 @@ import {PrincipalPage} from '../principal/principal';
   templateUrl: 'build/pages/login/login.html',
 })
 export class LoginPage {
-  constructor( public nav: NavController, public userService: UserService) {
-
-    if( userService.isLoggedIn() ){
-      this.nav.push(PrincipalPage, {});
-    }
+  constructor( public nav: NavController, public userService: UserService, platform: Platform) {
   }
 
   startFacebookLogin(){
