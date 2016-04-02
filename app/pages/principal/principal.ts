@@ -12,8 +12,11 @@ import {MinhasMensagensPage} from '../minhas-mensagens/minhas-mensagens';
   templateUrl: 'build/pages/principal/principal.html',
 })
 export class PrincipalPage {
-  constructor( public nav: NavController) {
+  fb: Firebase;
 
+  constructor( public nav: NavController) {
+    this.fb = new Firebase("https://zapbus.firebaseio.com/");
+    this.fb.push('funcionou caralho!');
   }
 
   openMensagensProximasPage(){
