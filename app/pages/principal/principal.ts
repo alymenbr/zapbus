@@ -15,7 +15,7 @@ export class PrincipalPage {
   fb: Firebase;
 
   constructor( public nav: NavController) {
-    this.fb = new Firebase("https://zapbus.firebaseio.com/");
+    this.fb = new Firebase("https://zapbus.firebaseio.com/messages");
     this.fb.push('funcionou caralho!');
   }
 
