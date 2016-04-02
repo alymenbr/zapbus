@@ -9,7 +9,7 @@ import {MessageService} from '../../providers/message-service/message-service';
 */
 @Page({
   templateUrl: 'build/pages/criar-mensagem/criar-mensagem.html',
-  providers: []  
+  providers: []
 })
 export class CriarMensagemPage {
 

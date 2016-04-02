@@ -28,7 +28,7 @@ export class MensagensProximasPage {
   }
 
   openCriarMensagemPage(){
-    this.nav.push(CriarMensagemPage, {});
+    this.nav.push(CriarMensagemPage, {messageList: this.messages});
   }
 
   openDetalhesMensagemPage(currentMessage){

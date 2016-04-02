@@ -5,9 +5,10 @@ import {provide} from 'angular2/core';
 
 import {UserService} from "./providers/user-service/user-service";
 import {MessageService} from './providers/message-service/message-service';
+import {FirebaseService} from './providers/firebase-service/firebase-service';
 
 @App({
-  providers: [UserService, MessageService],
+  providers: [FirebaseService, UserService, MessageService],
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
