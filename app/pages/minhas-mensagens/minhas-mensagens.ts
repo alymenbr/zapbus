@@ -11,7 +11,7 @@ import {Message} from '../../models/message/message';
 */
 @Page({
   templateUrl: 'build/pages/minhas-mensagens/minhas-mensagens.html',
-  providers: [MessageService]
+  providers: []
 })
 export class MinhasMensagensPage {
 

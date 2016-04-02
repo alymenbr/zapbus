@@ -1,12 +1,13 @@
 import {App, Platform} from 'ionic-angular';
-import {UserService} from "./providers/user-service/user-service";
 import {PrincipalPage} from './pages/principal/principal';
 import {LoginPage} from './pages/login/login';
-
 import {provide} from 'angular2/core';
 
+import {UserService} from "./providers/user-service/user-service";
+import {MessageService} from './providers/message-service/message-service';
+
 @App({
-  providers: [UserService],
+  providers: [UserService, MessageService],
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
@@ -14,7 +15,7 @@ export class MyApp {
   rootPage: any = LoginPage;
 
   constructor(platform: Platform, userService: UserService) {
-    
+
     if( userService.isLoggedIn() || !platform.is('cordova') ){
       this.rootPage = PrincipalPage;
     }

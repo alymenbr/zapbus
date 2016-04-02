@@ -10,7 +10,7 @@ import {Message} from '../../models/message/message';
 */
 @Page({
   templateUrl: 'build/pages/detalhes-mensagem/detalhes-mensagem.html',
-  providers: [MessageService]
+  providers: []
 })
 export class DetalhesMensagemPage {
 

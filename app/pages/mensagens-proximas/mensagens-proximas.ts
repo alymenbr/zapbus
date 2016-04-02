@@ -12,7 +12,7 @@ import {Message} from '../../models/message/message';
 */
 @Page({
   templateUrl: 'build/pages/mensagens-proximas/mensagens-proximas.html',
-  providers: [MessageService]
+  providers: []
 })
 export class MensagensProximasPage {
 
@@ -23,7 +23,8 @@ export class MensagensProximasPage {
   }
 
   carregarMensagens() {
-    this.messages = this.msgService.getMensagensProximas();
+    this.messages = new Array<Message>();
+    this.msgService.syncMensagensProximas(this.messages);
   }
 
   openCriarMensagemPage(){
