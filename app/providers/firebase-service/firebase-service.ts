@@ -52,6 +52,10 @@ export class FirebaseService {
     this.firebase.child(path).push(object);
   }
 
+  update(object, values, path) {
+    this.firebase.child(path).child(object.$id).update(values);
+  }
+/*
   wrapLocalOps(list, firebaseRef) {
      // we can hack directly on the array to provide some convenience methods
      list.$add = function(data) {
@@ -69,6 +73,8 @@ export class FirebaseService {
        return this.positionFor(list, key); // positionFor in examples above
      }
   }
+*/
+
 
   /* ------------------------------------- */
   /*                 UTIL                  */

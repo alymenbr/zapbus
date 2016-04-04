@@ -31,27 +31,28 @@ export class MessageService {
   }
 
   /* TODO */
-  addMessage(messageList, busLine: string, msgDetail: string){
+  addMessage(busLine: string, msgDetail: string){
     var newMessage = new Message(busLine, msgDetail, 'Eu');
     this.firebaseService.add( newMessage, this.PATH );
   }
 
   /* TODO */
-  addComment(message: Message, comment: string){
+  addComment(message, comment: string){
     var newComment = new Comment('Eu', 'img/avatar.png', comment);
-    message.comments.push(newComment);
+    //message.comments.push(newComment);
+    // this.firebaseService.update( message, {approvals: message.approvals, points: message.points}, this.PATH );
+
+    var commentsPath = this.PATH + '/' + message.$id + '/' + 'comments';
+    this.firebaseService.add( newComment, commentsPath);
   }
 
   /* TODO */
   approveMessage(message: Message){
-    message.approvals++;
-    message.points++;
+    this.firebaseService.update( message, {approvals: message.approvals + 1, points: message.points + 1}, this.PATH );
   }
 
   /* TODO */
   reproveMessage(message: Message){
-    message.reprovals++;
-    message.points--;
-    message.points--;
+    this.firebaseService.update( message, {reprovals: message.reprovals + 1, points: message.points - 2}, this.PATH );
   }
 }
