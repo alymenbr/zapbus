@@ -2,6 +2,7 @@ import {Page, NavController} from 'ionic-angular';
 import {DetalhesMensagemPage} from '../detalhes-mensagem/detalhes-mensagem';
 import {MessageService} from '../../providers/message-service/message-service';
 import {Message} from '../../models/message/message';
+import {TimeToString} from '../../pipes/time-to-string'
 
 /*
   Generated class for the MinhasMensagensPage page.
@@ -11,7 +12,7 @@ import {Message} from '../../models/message/message';
 */
 @Page({
   templateUrl: 'build/pages/minhas-mensagens/minhas-mensagens.html',
-  providers: []
+  pipes: [TimeToString]
 })
 export class MinhasMensagensPage {
 

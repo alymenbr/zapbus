@@ -24,7 +24,7 @@
         <img src={{msg.avatarUrl}}>
       </ion-avatar>
       <h4>{{msg.detail}}</h4>
-      <p>Deixado por <em primary>{{msg.authorName}}</em> em {{msg.date | date:'yMMMddHHmm' }}</p>
+      <p>Deixado por <em primary>{{msg.authorName}}</em> em {{msg.time | timeToString}}</p>
     </ion-item>
 
     <img src={{msg.mapUrl}}/>
@@ -72,7 +72,7 @@
           <img src={{comment.avatarUrl}}>
         </ion-avatar>
         <h3>{{comment.detail}}</h3>
-        <p>por <em primary>{{comment.author}}</em> em {{comment.date | date:'yMMMddHHmm' }}</p>
+        <p>por <em primary>{{comment.author}}</em> em {{comment.time | timeToString}}</p>
       </ion-item>
 
       <ion-item>

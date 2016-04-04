@@ -1,10 +1,10 @@
 
 export class Comment {
 
-  public date: Date;
+  time: number;
   constructor(  public author: string,
                 public avatarUrl: string,
                 public detail: string){
-                  this.date = new Date();
+                  this.time = new Date().getTime();
                 }
 }

@@ -3,6 +3,7 @@ import {DetalhesMensagemPage} from '../detalhes-mensagem/detalhes-mensagem';
 import {MessageService} from '../../providers/message-service/message-service';
 import {CriarMensagemPage} from '../criar-mensagem/criar-mensagem';
 import {Message} from '../../models/message/message';
+import {TimeToString} from '../../pipes/time-to-string'
 
 /*
   Generated class for the MensagensProximasPage page.
@@ -12,7 +13,7 @@ import {Message} from '../../models/message/message';
 */
 @Page({
   templateUrl: 'build/pages/mensagens-proximas/mensagens-proximas.html',
-  providers: []
+  pipes: [TimeToString]
 })
 export class MensagensProximasPage {
 

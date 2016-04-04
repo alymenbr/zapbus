@@ -39,8 +39,9 @@ export class MessageService {
   /* TODO */
   addComment(message, comment: string){
     var newComment = new Comment('Eu', 'img/avatar.png', comment);
-    //message.comments.push(newComment);
-    // this.firebaseService.update( message, {approvals: message.approvals, points: message.points}, this.PATH );
+
+    if(!message.comments) message.comments = [];
+    message.comments.push(newComment);
 
     var commentsPath = this.PATH + '/' + message.$id + '/' + 'comments';
     this.firebaseService.add( newComment, commentsPath);
@@ -48,11 +49,18 @@ export class MessageService {
 
   /* TODO */
   approveMessage(message: Message){
-    this.firebaseService.update( message, {approvals: message.approvals + 1, points: message.points + 1}, this.PATH );
+    message.approvals++;
+    message.points++;
+
+    this.firebaseService.update( message, {approvals: message.approvals, points: message.points}, this.PATH );
   }
 
   /* TODO */
   reproveMessage(message: Message){
-    this.firebaseService.update( message, {reprovals: message.reprovals + 1, points: message.points - 2}, this.PATH );
+    message.reprovals++;
+    message.points--;
+    message.points--;
+
+    this.firebaseService.update( message, {reprovals: message.reprovals, points: message.points}, this.PATH );
   }
 }

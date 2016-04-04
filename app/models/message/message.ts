@@ -5,20 +5,21 @@ export class Message {
   detail: string;
   authorName: string;
   avatarUrl: string;
-  date: Date;
   approvals: number;
   reprovals: number;
   points: number;
   coordinates: string;
   mapUrl: string ;
+  time: number;
   comments: Array<Comment>;
+
 
   constructor(  busLine: string, newDetail: string, newAuthor: string){
                   this.linhaOnibus = busLine;
                   this.detail = newDetail;
                   this.authorName = newAuthor;
                   this.avatarUrl = 'img/avatar.png';
-                  this.date = new Date();
+                  this.time = new Date().getTime();
                   this.approvals = 1;
                   this.reprovals = 0
                   this.points = 1;
