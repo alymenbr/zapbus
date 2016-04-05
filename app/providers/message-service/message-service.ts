@@ -2,6 +2,7 @@ import {Injectable, Inject} from 'angular2/core';
 import {Http} from 'angular2/http';
 import {Message} from '../../models/message/message';
 import {Comment} from '../../models/comment/comment';
+import {GeoLocation} from '../../models/geolocation/geolocation';
 import {FirebaseService} from '../firebase-service/firebase-service';
 
 /*
@@ -15,9 +16,6 @@ export class MessageService {
 
   PATH = 'messages';
 
-  static mockMessageList = [  new Message('5102A', 'O motorista de 7:15h é muito mal educado!', 'Tiffany'),
-                              new Message('SC03D', 'O motorista de 20:00h é tão rápido quanto meus punhos!', 'McGreggor')];
-
   constructor(public firebaseService: FirebaseService) {
   }
 
@@ -26,13 +24,13 @@ export class MessageService {
   }
 
   /* TODO */
-  getMinhasMensagens(){
-    return MessageService.mockMessageList;
+  syncMinhasMensagens(messageList){
+    this.firebaseService.syncToExternalList(messageList, this.PATH);
   }
 
   /* TODO */
-  addMessage(busLine: string, msgDetail: string){
-    var newMessage = new Message(busLine, msgDetail, 'Eu');
+  addMessage(busLine: string, msgDetail: string, location: GeoLocation){
+    var newMessage = new Message(busLine, msgDetail, 'Eu', location);
     this.firebaseService.add( newMessage, this.PATH );
   }
 

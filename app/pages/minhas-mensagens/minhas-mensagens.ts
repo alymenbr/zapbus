@@ -23,7 +23,7 @@ export class MinhasMensagensPage {
   }
 
   carregarMensagens() {
-    this.messages = this.msgService.getMinhasMensagens();
+    this.msgService.syncMinhasMensagens(this.messages);
   }
 
   openDetalhesMensagemPage(currentMessage){

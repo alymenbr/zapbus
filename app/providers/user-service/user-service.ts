@@ -23,7 +23,7 @@ export class UserService{
       UserService.currentUser = JSON.parse(window.localStorage[UserService.CURRENT_USER_FIELD]);
   }
 
-  getUserLocation(): Promise<Geolocation> {
+  getUserLocation(): Promise<GeoLocation> {
     var promiseResult;
     var promiseError;
     let promise = new Promise<Geolocation>((resolve, reject) => {promiseResult = resolve; promiseError = reject});

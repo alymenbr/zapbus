@@ -1,5 +1,7 @@
 import {Page, NavController} from 'ionic-angular';
 import {MessageService} from '../../providers/message-service/message-service';
+import {UserService} from '../../providers/user-service/user-service';
+import {GeoLocation} from '../../models/geolocation/geolocation';
 
 /*
   Generated class for the CriarMensagemPage page.
@@ -8,24 +10,29 @@ import {MessageService} from '../../providers/message-service/message-service';
   Ionic pages and navigation.
 */
 @Page({
-  templateUrl: 'build/pages/criar-mensagem/criar-mensagem.html',
-  providers: []
+  templateUrl: 'build/pages/criar-mensagem/criar-mensagem.html'
 })
 export class CriarMensagemPage {
 
   linhaOnibus: string;
   novaMensagem: string;
+  location: GeoLocation;
 
-  constructor( public nav: NavController, public messageService: MessageService) {
-
+  constructor( public nav: NavController, public messageService: MessageService, public userService: UserService) {
+    this.setLocation();
   }
 
+  setLocation(){
+    this.userService.getUserLocation().then( (result) => {
+      this.location = result;
+    })  }
+
   saveMessage(){
-    this.messageService.addMessage(this.linhaOnibus, this.novaMensagem);
+    this.messageService.addMessage(this.linhaOnibus, this.novaMensagem, this.location);
     this.linhaOnibus = '';
     this.novaMensagem = '';
 
-    this.nav.pop()
+    this.nav.pop();
   }
 
 }
