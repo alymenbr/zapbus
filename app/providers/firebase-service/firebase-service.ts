@@ -5,6 +5,7 @@ export class FirebaseService {
 
   FIREBASE_URL = 'https://zapbus.firebaseio.com/';
   firebase: Firebase;
+  geofire: Geofire;
 
   constructor() {
       this.firebase = new Firebase( this.FIREBASE_URL );

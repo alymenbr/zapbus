@@ -6,12 +6,14 @@ module.exports = {
     path.normalize('es6-shim/es6-shim.min'),
     'reflect-metadata',
     path.normalize('zone.js/dist/zone-microtask'),
+    path.normalize('firebase/lib/firebase-web'),
+    path.normalize('geofire/dist/geofire.min'),
     path.resolve('app/app')
   ],
   output: {
     path: path.resolve('www/build/js'),
     filename: 'app.bundle.js',
-    pathinfo: false // show module paths in the bundle, handy for debugging
+    pathinfo: true // show module paths in the bundle, handy for debugging
   },
   module: {
     loaders: [
