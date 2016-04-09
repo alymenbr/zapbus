@@ -9,14 +9,12 @@ export class Message {
   approvals: number;
   reprovals: number;
   points: number;
-  latitude: number;
-  longitude: number;
   mapUrl: string ;
   time: number;
   comments: Array<Comment>;
 
 
-  constructor(  busLine: string, newDetail: string, newAuthor: string, newLocation: GeoLocation){
+  constructor(  busLine: string, newDetail: string, newAuthor: string){
                   this.linhaOnibus = busLine;
                   this.detail = newDetail;
                   this.authorName = newAuthor;
@@ -25,8 +23,6 @@ export class Message {
                   this.approvals = 1;
                   this.reprovals = 0
                   this.points = 1;
-                  this.latitude = newLocation? newLocation.latitude : null
-                  this.longitude = newLocation? newLocation.longitude : null;
                   this.mapUrl = 'img/maps.png';
                   this.comments = Array<Comment>();
                 }

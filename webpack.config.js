@@ -5,9 +5,9 @@ module.exports = {
   entry: [
     path.normalize('es6-shim/es6-shim.min'),
     'reflect-metadata',
-    path.normalize('zone.js/dist/zone-microtask'),
+    path.normalize('zone.js/dist/zone'),
     path.normalize('firebase/lib/firebase-web'),
-    path.normalize('geofire/dist/geofire.min'),
+    path.normalize('geofire/dist/geofire'),
     path.resolve('app/app')
   ],
   output: {

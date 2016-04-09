@@ -6,9 +6,10 @@ import {provide} from 'angular2/core';
 import {UserService} from "./providers/user-service/user-service";
 import {MessageService} from './providers/message-service/message-service';
 import {FirebaseService} from './providers/firebase-service/firebase-service';
+import {GeofireService} from './providers/geofire-service/geofire-service';
 
 @App({
-  providers: [FirebaseService, UserService, MessageService],
+  providers: [FirebaseService, GeofireService, UserService, MessageService],
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
