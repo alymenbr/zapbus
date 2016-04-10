@@ -1,20 +1,25 @@
 import {Injectable, Inject} from 'angular2/core';
+import * as Firebase from 'firebase';
+import * as GeoFire from 'geofire';
 
 @Injectable()
 export class FirebaseService {
 
   FIREBASE_URL = 'https://zapbus.firebaseio.com/';
   firebase: Firebase;
+  geofire: GeoFire;
 
   constructor() {
       this.firebase = new Firebase( this.FIREBASE_URL );
+      this.geofire = new GeoFire(this.firebase);
   }
 
-  syncToExternalList(list, path) {
-      this.wrapRemoteOps(list, this.firebase.child(path) );
-  }
 
-  wrapRemoteOps(list, firebaseRef) {
+  /* ------------------------ */
+  /*          FIREBASE        */
+  /* ------------------------ */
+  syncList(list, path) {
+    let firebaseRef = this.firebase.child(path);
 
     firebaseRef.on('child_added', function _add(snap, prevChild) {
       var data = snap.val();
@@ -46,34 +51,28 @@ export class FirebaseService {
         list.splice(newPos, 0, data);
       }
     });
+
   }
 
-  add(object, path): FirebaseWithPromise<void> {
-    return this.firebase.child(path).push(object);
+  add(object, path): Firebase {
+    let remote = this.firebase.child(path).push();
+    remote.set(object);
+    return remote;
   }
 
   update(object, values, path) {
     this.firebase.child(path).child(object.$id).update(values);
   }
-/*
-  wrapLocalOps(list, firebaseRef) {
-     // we can hack directly on the array to provide some convenience methods
-     list.$add = function(data) {
-        return firebaseRef.push(data);
-     };
-     list.$remove = function(key) {
-       firebaseRef.child(key).remove();
-     };
-     list.$set = function(key, newData) {
-       // make sure we don't accidentally push our $id prop
-       if( newData.hasOwnProperty('$id') ) { delete newData.$id; }
-       firebaseRef.child(key).set(newData);
-     };
-     list.$indexOf = function(key) {
-       return this.positionFor(list, key); // positionFor in examples above
-     }
+
+
+
+  /* ------------------------ */
+  /*          GEOFIRE         */
+  /* ------------------------ */
+  addLocation(key, latitude, longitude){
+    this.geofire.set(key, [latitude, longitude]);
   }
-*/
+
 
 
   /* ------------------------------------- */

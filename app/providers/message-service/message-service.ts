@@ -4,7 +4,6 @@ import {Message} from '../../models/message/message';
 import {Comment} from '../../models/comment/comment';
 import {GeoLocation} from '../../models/geolocation/geolocation';
 import {FirebaseService} from '../firebase-service/firebase-service';
-import {GeofireService} from '../geofire-service/geofire-service';
 
 /*
   Generated class for the MessageService provider.
@@ -17,23 +16,23 @@ export class MessageService {
 
   PATH = 'messages';
 
-  constructor(public firebaseService: FirebaseService, public geofireService: GeofireService) {
+  constructor(public firebaseService: FirebaseService) {
   }
 
   syncMensagensProximas(messageList) {
-    this.firebaseService.syncToExternalList(messageList, this.PATH);
+    this.firebaseService.syncList(messageList, this.PATH);
   }
 
   /* TODO */
   syncMinhasMensagens(messageList){
-    this.firebaseService.syncToExternalList(messageList, this.PATH);
+    this.firebaseService.syncList(messageList, this.PATH);
   }
 
   /* TODO */
   addMessage(busLine: string, msgDetail: string, location: GeoLocation){
     var newMessage = new Message(busLine, msgDetail, 'Eu');
     let remoteMsg = this.firebaseService.add( newMessage, this.PATH );
-    this.geofireService.add(remoteMsg, location.latitude, location.longitude);
+    this.firebaseService.addLocation(remoteMsg.key(), location.latitude, location.longitude);
   }
 
   /* TODO */

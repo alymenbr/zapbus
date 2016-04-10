@@ -1,4 +1,6 @@
 {
   "name": "zapbus",
-  "app_id": "6e0aed5d"
+  "app_id": "6e0aed5d",
+  "v2": true,
+  "typescript": true
 }
