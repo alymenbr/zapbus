@@ -73,6 +73,20 @@ export class FirebaseService {
     this.geofire.set(key, [latitude, longitude]);
   }
 
+  getLocation(key) {
+    this.geofire.get(key).then(function(location) {
+      if (location === null) {
+        console.log("Provided key is not in GeoFire");
+      }
+      else {
+        console.log("Provided key has a location of " + location);
+      }
+    }, function(error) {
+      console.log("Error: " + error);
+    });
+  }
+
+
 
 
   /* ------------------------------------- */

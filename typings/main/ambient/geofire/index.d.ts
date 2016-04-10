@@ -5,6 +5,7 @@ interface GeoQuery {}
 
 interface GeoFire extends GeoQuery {
 	set(keyOrLocations: any, location: any);
+	get(key: any): any;
 }
 
 interface GeoFireStatic {

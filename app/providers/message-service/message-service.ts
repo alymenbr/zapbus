@@ -23,19 +23,16 @@ export class MessageService {
     this.firebaseService.syncList(messageList, this.PATH);
   }
 
-  /* TODO */
   syncMinhasMensagens(messageList){
     this.firebaseService.syncList(messageList, this.PATH);
   }
 
-  /* TODO */
   addMessage(busLine: string, msgDetail: string, location: GeoLocation){
     var newMessage = new Message(busLine, msgDetail, 'Eu');
     let remoteMsg = this.firebaseService.add( newMessage, this.PATH );
     this.firebaseService.addLocation(remoteMsg.key(), location.latitude, location.longitude);
   }
 
-  /* TODO */
   addComment(message, comment: string){
     var newComment = new Comment('Eu', 'img/avatar.png', comment);
 
@@ -46,7 +43,10 @@ export class MessageService {
     this.firebaseService.add( newComment, commentsPath);
   }
 
-  /* TODO */
+  getLocation(message){
+    this.firebaseService.getLocation(message.$id);
+  }
+
   approveMessage(message: Message){
     message.approvals++;
     message.points++;
@@ -54,7 +54,6 @@ export class MessageService {
     this.firebaseService.update( message, {approvals: message.approvals, points: message.points}, this.PATH );
   }
 
-  /* TODO */
   reproveMessage(message: Message){
     message.reprovals++;
     message.points--;

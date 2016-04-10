@@ -20,6 +20,7 @@ export class DetalhesMensagemPage {
 
   constructor( public nav: NavController, public params: NavParams, public messageService: MessageService) {
     this.msg = params.get('message');
+    this.messageService.getLocation(this.msg);
   }
 
   sendComment(){
