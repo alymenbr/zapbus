@@ -76,4 +76,35 @@ export class UserService{
   private saveUser(){
     window.localStorage[UserService.CURRENT_USER_FIELD] = JSON.stringify(UserService.currentUser);
   }
+
+  setMap(mapVar: any, tagId: string, latitude: any, longitude: any) {
+    let latLng
+    if(latitude && longitude) {
+      latLng = new google.maps.LatLng(latitude, longitude); // Parameter Location
+    } else {
+      latLng = new google.maps.LatLng(-19.9188019, -43.9407475); // Praça 7, BH - MG
+    }
+
+    let mapOptions = {
+      center: latLng,
+      minZoom: 15,
+      zoom: 17,
+      //MaxZoom: 19,
+      draggable: false,
+      streetViewControl: false,
+      overviewMapControl: false,
+      mapTypeControl: false,
+      clicablelabels: false,
+      panControl: true,
+      mapTypeId: google.maps.MapTypeId.HYBRID
+    }
+
+    mapVar = new google.maps.Map(document.getElementById( tagId ), mapOptions);
+
+    let marker = new google.maps.Marker({
+      map: mapVar,
+      animation: google.maps.Animation.DROP,
+      position: latLng
+    });
+  }
 }

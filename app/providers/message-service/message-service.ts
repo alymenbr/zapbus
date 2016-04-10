@@ -30,7 +30,9 @@ export class MessageService {
   addMessage(busLine: string, msgDetail: string, location: GeoLocation){
     var newMessage = new Message(busLine, msgDetail, 'Eu');
     let remoteMsg = this.firebaseService.add( newMessage, this.PATH );
-    this.firebaseService.addLocation(remoteMsg.key(), location.latitude, location.longitude);
+
+    if(location)
+      this.firebaseService.addLocation(remoteMsg.key(), location.latitude, location.longitude);
   }
 
   addComment(message, comment: string){
@@ -43,8 +45,8 @@ export class MessageService {
     this.firebaseService.add( newComment, commentsPath);
   }
 
-  getLocation(message){
-    this.firebaseService.getLocation(message.$id);
+  getLocation(message): any{
+    return this.firebaseService.getLocation(message.$id);
   }
 
   approveMessage(message: Message){

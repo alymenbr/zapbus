@@ -17,6 +17,8 @@ export class CriarMensagemPage {
   linhaOnibus: string;
   novaMensagem: string;
   location: GeoLocation;
+  map;
+
 
   constructor( public nav: NavController, public messageService: MessageService, public userService: UserService) {
     this.setLocation();
@@ -24,8 +26,13 @@ export class CriarMensagemPage {
 
   setLocation(){
     this.userService.getUserLocation().then( (result) => {
+      this.loadMap(result);
       this.location = result;
-    })  }
+    })}
+
+  loadMap(location: GeoLocation){
+    this.userService.setMap(this.map, "map", location.latitude, location.longitude);
+  }
 
   saveMessage(){
     this.messageService.addMessage(this.linhaOnibus, this.novaMensagem, this.location);

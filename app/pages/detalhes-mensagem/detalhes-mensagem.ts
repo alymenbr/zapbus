@@ -1,5 +1,6 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {MessageService} from '../../providers/message-service/message-service';
+import {UserService} from '../../providers/user-service/user-service';
 import {Message} from '../../models/message/message';
 import {TimeToString} from '../../pipes/time-to-string'
 
@@ -16,11 +17,14 @@ import {TimeToString} from '../../pipes/time-to-string'
 export class DetalhesMensagemPage {
 
   msg: Message;
+  map: any;
   novoComentario: string;
 
-  constructor( public nav: NavController, public params: NavParams, public messageService: MessageService) {
+  constructor( public nav: NavController, public params: NavParams, public messageService: MessageService, public userService: UserService) {
     this.msg = params.get('message');
-    this.messageService.getLocation(this.msg);
+    this.messageService.getLocation(this.msg).then( (location) => {
+      this.userService.setMap(this.map, "map", location[0], location[1])
+    });
   }
 
   sendComment(){
