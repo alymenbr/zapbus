@@ -9,3 +9,11 @@
 
 @import '../pages/criar-mensagem/criar-mensagem';
 @import '../pages/detalhes-mensagem/detalhes-mensagem';
+
+// App Shared Sass
+// --------------------------------------------------
+// All Sass files that make up this app goes into the app.core.scss file.
+// For simpler CSS overrides, custom app CSS must come after Ionic's CSS.
+h3, h4 {
+  padding-top: 4px !important;
+}

@@ -42,10 +42,7 @@ export class MessageService {
 
   addComment(message, comment: string){
     var newComment = new Comment('Eu', 'img/avatar.png', comment);
-/*
-    if(!message.comments) message.comments = [];
-    message.comments.push(newComment);
-*/
+
     var commentsPath = this.PATH + '/' + message.$id + '/' + 'comments';
     this.firebaseService.add( newComment, commentsPath);
   }
