@@ -27,6 +27,11 @@ export class MessageService {
     this.firebaseService.syncList(messageList, this.PATH);
   }
 
+  syncComentariosMensagem(message, commentsList) {
+    var commentsPath = this.PATH + '/' + message.$id + '/' + 'comments';
+    this.firebaseService.syncList(commentsList, commentsPath);
+  }
+
   addMessage(busLine: string, msgDetail: string, location: GeoLocation){
     var newMessage = new Message(busLine, msgDetail, 'Eu');
     let remoteMsg = this.firebaseService.add( newMessage, this.PATH );
@@ -37,10 +42,10 @@ export class MessageService {
 
   addComment(message, comment: string){
     var newComment = new Comment('Eu', 'img/avatar.png', comment);
-
+/*
     if(!message.comments) message.comments = [];
     message.comments.push(newComment);
-
+*/
     var commentsPath = this.PATH + '/' + message.$id + '/' + 'comments';
     this.firebaseService.add( newComment, commentsPath);
   }
