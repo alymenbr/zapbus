@@ -34,13 +34,13 @@
        <ion-col>
          <button medium primary (click)='approveMessage()'>
            <ion-icon name='thumbs-up'></ion-icon>
-           Aprovar
+           {{hasApproved? Aprovado! : Aprovar}}
          </button>
        </ion-col>
        <ion-col text-right>
          <button medium danger (click)='reproveMessage()'>
            <ion-icon name='thumbs-down'></ion-icon>
-           Reprovar
+           {{hasReproved? Reprovado! : Reprovar}}
          </button>
        </ion-col>
      </ion-row>

@@ -77,6 +77,10 @@ export class UserService{
     window.localStorage[UserService.CURRENT_USER_FIELD] = JSON.stringify(UserService.currentUser);
   }
 
+  getCurrentUser(): User {
+    return UserService.currentUser;
+  }
+
   setMap(mapVar: any, tagId: string, latitude: any, longitude: any) {
     let latLng
     if(latitude && longitude) {

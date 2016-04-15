@@ -3,6 +3,7 @@ import {Http} from 'angular2/http';
 import {Message} from '../../models/message/message';
 import {Comment} from '../../models/comment/comment';
 import {GeoLocation} from '../../models/geolocation/geolocation';
+import {UserService} from '../user-service/user-service';
 import {FirebaseService} from '../firebase-service/firebase-service';
 
 /*
@@ -16,7 +17,7 @@ export class MessageService {
 
   PATH = 'messages';
 
-  constructor(public firebaseService: FirebaseService) {
+  constructor(public firebaseService: FirebaseService, public userService: UserService) {
   }
 
   syncMensagensProximas(messageList) {
@@ -33,7 +34,8 @@ export class MessageService {
   }
 
   addMessage(busLine: string, msgDetail: string, location: GeoLocation){
-    var newMessage = new Message(busLine, msgDetail, 'Eu');
+    let currentUser = this.userService.getCurrentUser();
+    let newMessage = new Message(busLine, msgDetail, currentUser.name, currentUser.avatarUrl, currentUser.facebookId);
     let remoteMsg = this.firebaseService.add( newMessage, this.PATH );
 
     if(location)
@@ -41,7 +43,8 @@ export class MessageService {
   }
 
   addComment(message, comment: string){
-    var newComment = new Comment('Eu', 'img/avatar.png', comment);
+    let currentUser = this.userService.getCurrentUser();
+    var newComment = new Comment(currentUser.name, currentUser.avatarUrl, currentUser.facebookId, comment);
 
     var commentsPath = this.PATH + '/' + message.$id + '/' + 'comments';
     this.firebaseService.add( newComment, commentsPath);
@@ -52,6 +55,13 @@ export class MessageService {
   }
 
   approveMessage(message: Message){
+    let currentUser = this.userService.getCurrentUser();
+    if(Message.hasApproved(message, currentUser.facebookId) )
+      return; // Can't approve twice!
+
+    message.approvalHash[currentUser.facebookId] = true;
+    message.reprovalHash[currentUser.facebookId] = null;
+
     message.approvals++;
     message.points++;
 
@@ -59,6 +69,13 @@ export class MessageService {
   }
 
   reproveMessage(message: Message){
+    let currentUser = this.userService.getCurrentUser();
+    if(Message.hasReproved(message, currentUser.facebookId) )
+      return; // Can't reprove twice!
+
+    message.approvalHash[currentUser.facebookId] = null;
+    message.reprovalHash[currentUser.facebookId] = true;
+
     message.reprovals++;
     message.points--;
     message.points--;

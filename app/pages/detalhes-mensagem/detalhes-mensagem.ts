@@ -45,6 +45,16 @@ export class DetalhesMensagemPage {
     this.novoComentario = '';
   }
 
+  hasApproved(){
+    let currentUser = this.userService.getCurrentUser();
+    return Message.hasApproved(this.msg, currentUser.facebookId);
+  }
+
+  hasReproved(){
+    let currentUser = this.userService.getCurrentUser();
+    return Message.hasReproved(this.msg, currentUser.facebookId);
+  }
+
   approveMessage(){
     this.messageService.approveMessage(this.msg);
   }
