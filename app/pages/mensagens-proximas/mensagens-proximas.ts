@@ -24,12 +24,15 @@ export class MensagensProximasPage {
   }
 
   onPageWillEnter() {
-    this.carregarMensagens();
+    this.userService.getUserLocation().then( (result) => {
+      this.carregarMensagens(result.latitude, result.longitude);
+    })
+
   }
 
-  carregarMensagens() {
+  carregarMensagens(latitude, longitude) {
     this.messages = new Array<Message>();
-    this.msgService.syncMensagensProximas(this.messages);
+    this.msgService.syncMensagensProximas(this.messages, latitude, longitude);
   }
 
   openCriarMensagemPage(){

@@ -20,7 +20,7 @@ export class MessageService {
   constructor(public firebaseService: FirebaseService, public userService: UserService) {
   }
 
-  syncMensagensProximas(messageList) {
+  syncMensagensProximas(messageList, latitude, longitude) {
     this.firebaseService.syncList(messageList, this.PATH);
   }
 
