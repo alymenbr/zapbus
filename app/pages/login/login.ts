@@ -15,6 +15,7 @@ import {PrincipalPage} from '../principal/principal';
 })
 export class LoginPage {
   constructor( public nav: NavController, public userService: UserService, platform: Platform) {
+    document.addEventListener('backbutton', () => platform.exitApp() );    
   }
 
   startFacebookLogin(){

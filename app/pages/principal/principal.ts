@@ -1,4 +1,4 @@
-import {Page, NavController} from 'ionic-angular';
+import {Page, NavController, Platform} from 'ionic-angular';
 import {MensagensProximasPage} from '../mensagens-proximas/mensagens-proximas';
 import {MinhasMensagensPage} from '../minhas-mensagens/minhas-mensagens';
 
@@ -13,8 +13,8 @@ import {MinhasMensagensPage} from '../minhas-mensagens/minhas-mensagens';
 })
 export class PrincipalPage {
 
-  constructor( public nav: NavController) {
-
+  constructor( public nav: NavController, platform: Platform) {
+    document.addEventListener('backbutton', () => platform.exitApp() );
   }
 
   openMensagensProximasPage(){

@@ -21,7 +21,7 @@ export class CriarMensagemPage {
 
 
   constructor( public nav: NavController, public messageService: MessageService, public userService: UserService) {
-    this.setLocation();
+    document.addEventListener('backbutton', () => this.nav.pop() );
   }
 
   onPageWillEnter() {
