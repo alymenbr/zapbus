@@ -16,7 +16,7 @@ import {FirebaseService} from './providers/firebase-service/firebase-service';
 export class MyApp {
   rootPage: any = LoginPage;
 
-  constructor(platform: Platform, userService: UserService) {
+  constructor(public platform: Platform, public userService: UserService, public messageSerice: MessageService) {
 
     if( userService.isLoggedIn() || !platform.is('cordova') ){
       this.rootPage = PrincipalPage;

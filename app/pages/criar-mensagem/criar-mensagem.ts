@@ -24,6 +24,10 @@ export class CriarMensagemPage {
     this.setLocation();
   }
 
+  onPageWillEnter() {
+    this.setLocation();
+  }
+
   setLocation(){
     this.userService.getUserLocation().then( (result) => {
       this.loadMap(result);

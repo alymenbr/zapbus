@@ -56,8 +56,22 @@ export class MessageService {
 
   approveMessage(message: Message){
     let currentUser = this.userService.getCurrentUser();
+
     if(Message.hasApproved(message, currentUser.facebookId) )
       return; // Can't approve twice!
+
+    if(Message.hasReproved(message, currentUser.facebookId) ){
+      // undo reproval
+      message.reprovals--;
+      message.points++;
+      message.points++;
+    }
+
+    if(!message.approvalHash)
+      message.approvalHash = {};
+
+    if(!message.reprovalHash)
+      message.reprovalHash = {};
 
     message.approvalHash[currentUser.facebookId] = true;
     message.reprovalHash[currentUser.facebookId] = null;
@@ -65,13 +79,26 @@ export class MessageService {
     message.approvals++;
     message.points++;
 
-    this.firebaseService.update( message, {approvals: message.approvals, points: message.points}, this.PATH );
+    this.firebaseService.update( message, {approvals: message.approvals, reprovals: message.reprovals, points: message.points, approvalHash: message.approvalHash, reprovalHash: message.reprovalHash}, this.PATH );
   }
 
   reproveMessage(message: Message){
     let currentUser = this.userService.getCurrentUser();
+
     if(Message.hasReproved(message, currentUser.facebookId) )
       return; // Can't reprove twice!
+
+    if(Message.hasApproved(message, currentUser.facebookId) ){
+      // undo approval
+      message.approvals--;
+      message.points--;
+    }
+
+    if(!message.approvalHash)
+      message.approvalHash = {};
+
+    if(!message.reprovalHash)
+      message.reprovalHash = {};
 
     message.approvalHash[currentUser.facebookId] = null;
     message.reprovalHash[currentUser.facebookId] = true;
@@ -80,6 +107,6 @@ export class MessageService {
     message.points--;
     message.points--;
 
-    this.firebaseService.update( message, {reprovals: message.reprovals, points: message.points}, this.PATH );
+    this.firebaseService.update( message, {approvals: message.approvals, reprovals: message.reprovals, points: message.points, approvalHash: message.approvalHash, reprovalHash: message.reprovalHash}, this.PATH );
   }
 }

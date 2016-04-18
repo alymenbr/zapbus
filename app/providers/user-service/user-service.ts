@@ -2,7 +2,7 @@ import {Injectable} from 'angular2/core';
 import {Facebook, Geolocation} from 'ionic-native';
 import {User} from '../../models/user/user';
 import {GeoLocation} from '../../models/geolocation/geolocation';
-import {Http} from 'angular2/http';
+import {Platform} from 'ionic-angular';
 
 @Injectable()
 export class UserService{
@@ -10,7 +10,7 @@ export class UserService{
   static CURRENT_USER_FIELD = "currentUser";
   static currentUser: User;
 
-  constructor(http: Http){
+  constructor(public platform: Platform){
     this.loadUser();
   }
 
@@ -21,6 +21,14 @@ export class UserService{
   loadUser(){
     if(!UserService.currentUser && window.localStorage[UserService.CURRENT_USER_FIELD])
       UserService.currentUser = JSON.parse(window.localStorage[UserService.CURRENT_USER_FIELD]);
+
+    if( !this.platform.is('cordova') ){
+      let defaultUser = new User("980426748671892");
+      defaultUser.name = "Browser";
+      defaultUser.avatarUrl = "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c73.72.814.814/s60x60/308666_518520878195817_146980306_n.jpg?oh=18eed5aa21aa3a120361f76828a17774&oe=57832D87&__gda__=1471809144_9775c6ba5ef52fff6a8048978249bd78";
+      UserService.currentUser = defaultUser;
+    }
+
   }
 
   getUserLocation(): Promise<GeoLocation> {

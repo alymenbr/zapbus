@@ -23,6 +23,10 @@ export class MensagensProximasPage {
     this.carregarMensagens();
   }
 
+  onPageWillEnter() {
+    this.carregarMensagens();
+  }
+
   carregarMensagens() {
     this.messages = new Array<Message>();
     this.msgService.syncMensagensProximas(this.messages);

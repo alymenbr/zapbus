@@ -36,14 +36,14 @@ export class Message {
     /* Deixar mensagens iniciais nas coordenadas de cada capital */
 
   static hasApproved(message: Message, userId: string): boolean {
-    if( message.approvalHash[userId] != null )
+    if( message.approvalHash && message.approvalHash[userId] != null )
       return true;
 
     return false;
   }
 
   static hasReproved(message: Message, userId: string): boolean {
-    if( message.reprovalHash[userId] != null )
+    if( message.reprovalHash && message.reprovalHash[userId] != null )
       return true;
 
     return false;

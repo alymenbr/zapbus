@@ -15,15 +15,11 @@
 <ion-content padding class="detalhes-mensagem">
 
   <ion-card>
-    <ion-item>
-      <ion-badge secondary item-left>{{msg.linhaOnibus}}</ion-badge>
-    </ion-item>
-
     <ion-item text-wrap>
       <ion-avatar item-left>
         <img src={{msg.avatarUrl}}>
       </ion-avatar>
-      <h4>{{msg.detail}}</h4>
+      <h4><ion-badge secondary>{{msg.linhaOnibus}}</ion-badge>{{msg.detail}}</h4>
       <p>Deixado por <em primary>{{msg.authorName}}</em> em {{msg.time | timeToString}}</p>
     </ion-item>
 
@@ -34,13 +30,13 @@
        <ion-col>
          <button medium primary (click)='approveMessage()'>
            <ion-icon name='thumbs-up'></ion-icon>
-           {{hasApproved? Aprovado! : Aprovar}}
+          {{fillAprovallText()}}
          </button>
        </ion-col>
        <ion-col text-right>
          <button medium danger (click)='reproveMessage()'>
            <ion-icon name='thumbs-down'></ion-icon>
-           {{hasReproved? Reprovado! : Reprovar}}
+           {{fillReprovallText()}}
          </button>
        </ion-col>
      </ion-row>

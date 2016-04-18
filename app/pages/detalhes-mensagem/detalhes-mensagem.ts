@@ -24,9 +24,12 @@ export class DetalhesMensagemPage {
 
   constructor( public nav: NavController, public params: NavParams, public messageService: MessageService, public userService: UserService) {
     this.msg = params.get('message');
+
+  }
+
+  onPageWillEnter() {
     this.carregarComentarios();
     this.carregarLocalizacao();
-
   }
 
   carregarComentarios() {
@@ -45,9 +48,18 @@ export class DetalhesMensagemPage {
     this.novoComentario = '';
   }
 
+  fillAprovallText(): string {
+    return this.hasApproved()? "Você aprovou!" : "Aprovar";
+  }
+
+  fillReprovallText(): string {
+    return this.hasReproved()? "Você reprovou!" : "Reprovar";
+  }
+
   hasApproved(){
     let currentUser = this.userService.getCurrentUser();
     return Message.hasApproved(this.msg, currentUser.facebookId);
+
   }
 
   hasReproved(){
