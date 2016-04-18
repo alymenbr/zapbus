@@ -15,11 +15,10 @@ import {PrincipalPage} from '../principal/principal';
 })
 export class LoginPage {
   constructor( public nav: NavController, public userService: UserService, platform: Platform) {
-    document.addEventListener('backbutton', () => platform.exitApp() );    
+
   }
 
   startFacebookLogin(){
-
     this.userService.login().then( (result) => {
       this.nav.push(PrincipalPage, {});
     })

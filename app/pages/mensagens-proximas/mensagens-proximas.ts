@@ -20,7 +20,7 @@ export class MensagensProximasPage {
   messages: Array<Message>;
 
   constructor( public nav: NavController, public msgService: MessageService) {
-    document.addEventListener('backbutton', () => this.nav.pop() );
+
   }
 
   onPageWillEnter() {

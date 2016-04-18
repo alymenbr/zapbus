@@ -24,7 +24,6 @@ export class DetalhesMensagemPage {
 
   constructor( public nav: NavController, public params: NavParams, public messageService: MessageService, public userService: UserService) {
     this.msg = params.get('message');
-    document.addEventListener('backbutton', () => this.nav.pop() );
   }
 
   onPageWillEnter() {

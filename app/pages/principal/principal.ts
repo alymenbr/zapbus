@@ -14,7 +14,6 @@ import {MinhasMensagensPage} from '../minhas-mensagens/minhas-mensagens';
 export class PrincipalPage {
 
   constructor( public nav: NavController, platform: Platform) {
-    document.addEventListener('backbutton', () => platform.exitApp() );
   }
 
   openMensagensProximasPage(){
