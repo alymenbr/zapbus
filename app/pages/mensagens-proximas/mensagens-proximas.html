@@ -17,6 +17,7 @@
       <ion-badge secondary item-left>{{msg.linhaOnibus}}</ion-badge>
       <h4>{{msg.detail}}</h4>
       <p>Deixado por <em primary>{{msg.authorName}}</em> em {{msg.time | timeToString}}</p>
+      <ion-badge light item-right>{{msg.distance | distanceToString}}</ion-badge>
     </ion-item>
 
   </ion-card>

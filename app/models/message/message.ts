@@ -2,6 +2,9 @@ import {Comment} from '../comment/comment';
 import {GeoLocation} from '../geolocation/geolocation';
 
 export class Message {
+  key: string;// only available after a trip to firebase
+  // distance  - only available after a trip to firebase
+
   linhaOnibus: string
   detail: string;
   authorName: string;
@@ -23,10 +26,10 @@ export class Message {
                   this.avatarUrl = avatarUrl;
                   this.authorId = authorId;
                   this.time = new Date().getTime();
-                  this.approvals = 1;
+                  this.approvals = 0;
                   this.reprovals = 0
-                  this.points = 1;
-                  this.approvalHash = {authorId: true};
+                  this.points = 0;
+                  this.approvalHash = {};
                   this.reprovalHash = {};
                   this.comments = Array<Comment>();
                 }

@@ -5,6 +5,7 @@ import {UserService} from '../../providers/user-service/user-service';
 import {CriarMensagemPage} from '../criar-mensagem/criar-mensagem';
 import {Message} from '../../models/message/message';
 import {TimeToString} from '../../pipes/time-to-string';
+import {DistanceToString} from '../../pipes/distance-to-string';
 
 /*
   Generated class for the MensagensProximasPage page.
@@ -14,14 +15,14 @@ import {TimeToString} from '../../pipes/time-to-string';
 */
 @Page({
   templateUrl: 'build/pages/mensagens-proximas/mensagens-proximas.html',
-  pipes: [TimeToString]
+  pipes: [TimeToString, DistanceToString]
 })
 export class MensagensProximasPage {
 
   messages: Array<Message>;
 
   constructor( public nav: NavController, public msgService: MessageService, public userService: UserService) {
-    this.messages = new Array<Message>();
+
   }
 
   onPageWillEnter() {

@@ -1,16 +1,16 @@
 import {Pipe} from 'angular2/core';
 
 @Pipe({
-  name: 'timeToString'
+  name: 'distanceToString'
 })
-export class TimeToString {
+export class DistanceToString {
 
   dateFormat = {  year: "numeric", month: "short", day: "numeric",
                   hour: "2-digit", minute: "2-digit", hour12: false
   };
 
   transform(value, args) {
-    if(value == null) return '';
-    return new Date(value).toLocaleDateString("pt-BR", this.dateFormat);
+    if(value == null) return '0km';
+    return value.toFixed(1) + 'km';
   }
 }

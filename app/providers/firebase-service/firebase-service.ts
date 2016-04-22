@@ -22,50 +22,31 @@ export class FirebaseService {
     let firebaseRef = FirebaseService.firebase.child(path);
 
     firebaseRef.on('child_added', function _add(snap, prevChild) {
+      let message = snap.val();
+      //message.distance = 0;
       list.push( snap.val() );
-
-      /*
-      var data = snap.val();
-      data.$id = snap.key(); // assumes data is always an object
-      var pos = FirebaseService.positionAfter(list, prevChild);
-      list.splice(pos, 0, data);
-      */
     });
+  }
 
-    firebaseRef.on('child_removed', function _remove(snap) {
-      var i = FirebaseService.positionFor(list, snap.key());
-      if( i > -1 ) {
-        list.splice(i, 1);
-      }
+  syncListByUser(list, path, userId) {
+    let firebaseRef = FirebaseService.firebase.child(path);
+
+    firebaseRef.orderByChild("authorId").equalTo( userId ).on('child_added', function _add(snap, prevChild) {
+      let message = snap.val();
+      //message.distance = 0;
+      list.push( snap.val() );
     });
-
-    firebaseRef.on('child_changed', function _change(snap) {
-      var i = FirebaseService.positionFor(list, snap.key());
-      if( i > -1 ) {
-        list[i] = snap.val();
-        list[i].$id = snap.key(); // assumes data is always an object
-      }
-    });
-
-    firebaseRef.on('child_moved', function _move(snap, prevChild) {
-      var curPos = FirebaseService.positionFor(list, snap.key());
-      if( curPos > -1 ) {
-        var data = list.splice(curPos, 1)[0];
-        var newPos = this.positionAfter(list, prevChild);
-        list.splice(newPos, 0, data);
-      }
-    });
-
   }
 
   add(object, path): Firebase {
     let remote = FirebaseService.firebase.child(path).push();
+    object.key = remote.key();
     remote.set(object);
     return remote;
   }
 
   update(object, values, path) {
-    FirebaseService.firebase.child(path).child(object.$id).update(values);
+    FirebaseService.firebase.child(path).child(object.key).update(values);
   }
 
 
@@ -85,18 +66,11 @@ export class FirebaseService {
       let firebaseQuery = FirebaseService.firebase.child(path).child(key);
       firebaseQuery.once("value", function(data) {
         let message = data.val();
-        //message.distance = distance;
+        message.distance = distance;
 
-        //var pos = FirebaseService.positionAfter(list, prevChild);
-        list.push(message)
+        var pos = FirebaseService.selectPositionByDistance(list, distance);
+        list.splice(pos, 0, message);
       });
-    });
-
-    geoQuery.on('key_exited', function _remove(key, location, distance) {
-      var i = FirebaseService.positionFor(list, key);
-      if( i > -1 ) {
-        list.splice(i, 1);
-      }
     });
 
     geoQuery.on('ready', function () {
@@ -112,38 +86,13 @@ export class FirebaseService {
     return FirebaseService.geofire.get(key);
   }
 
-
-
-
-  /* ------------------------------------- */
-  /*                 UTIL                  */
-  /* ------------------------------------- */
-
-  // similar to indexOf, but uses id to find element
-  static positionFor(list, key) {
+  static selectPositionByDistance(list, distance): any {
     for(var i = 0, len = list.length; i < len; i++) {
-      if( list[i].$id === key ) {
+      if( list[i].distance > distance ) {
         return i;
       }
     }
-    return -1;
-  }
 
-  // using the Firebase API's prevChild behavior, we
-  // place each element in the list after it's prev
-  // sibling or, if prevChild is null, at the beginning
-  static positionAfter(list, prevChild) {
-    if( prevChild === null ) {
-      return 0;
-    }
-    else {
-      var i = this.positionFor(list, prevChild);
-      if( i === -1 ) {
-        return list.length;
-      }
-      else {
-        return i+1;
-      }
-    }
+    return list.length;
   }
 }

@@ -25,36 +25,39 @@ export class MessageService {
   }
 
   syncMinhasMensagens(messageList){
-    this.firebaseService.syncList(messageList, this.PATH);
+    let currentUser = this.userService.getCurrentUser();
+    this.firebaseService.syncListByUser(messageList, this.PATH, currentUser.facebookId);
   }
 
   syncComentariosMensagem(message, commentsList) {
-    var commentsPath = this.PATH + '/' + message.$id + '/' + 'comments';
+    var commentsPath = this.PATH + '/' + message.key + '/' + 'comments';
     this.firebaseService.syncList(commentsList, commentsPath);
   }
 
   addMessage(busLine: string, msgDetail: string, location: GeoLocation){
     let currentUser = this.userService.getCurrentUser();
     let newMessage = new Message(busLine, msgDetail, currentUser.name, currentUser.avatarUrl, currentUser.facebookId);
+
     let remoteMsg = this.firebaseService.add( newMessage, this.PATH );
+    this.approveMessage(newMessage);
 
     if(location)
-      this.firebaseService.addLocation(remoteMsg.key(), location.latitude, location.longitude);
+      this.firebaseService.addLocation(newMessage.key, location.latitude, location.longitude);
   }
 
   addComment(message, comment: string){
     let currentUser = this.userService.getCurrentUser();
     var newComment = new Comment(currentUser.name, currentUser.avatarUrl, currentUser.facebookId, comment);
 
-    var commentsPath = this.PATH + '/' + message.$id + '/' + 'comments';
+    var commentsPath = this.PATH + '/' + message.key + '/' + 'comments';
     this.firebaseService.add( newComment, commentsPath);
   }
 
   getLocation(message): any{
-    return this.firebaseService.getLocation(message.$id);
+    return this.firebaseService.getLocation(message.key);
   }
 
-  approveMessage(message: Message){
+  approveMessage(message){
     let currentUser = this.userService.getCurrentUser();
 
     if(Message.hasApproved(message, currentUser.facebookId) )
