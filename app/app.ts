@@ -1,10 +1,9 @@
-import 'es6-shim';
 import {App, Platform} from 'ionic-angular';
 import {PrincipalPage} from './pages/principal/principal';
 import {LoginPage} from './pages/login/login';
 import {provide} from 'angular2/core';
 
-import {UserService} from "./providers/user-service/user-service";
+import {UserService} from './providers/user-service/user-service';
 import {MessageService} from './providers/message-service/message-service';
 import {FirebaseService} from './providers/firebase-service/firebase-service';
 
@@ -16,7 +15,7 @@ import {FirebaseService} from './providers/firebase-service/firebase-service';
 export class MyApp {
   rootPage: any = LoginPage;
 
-  constructor(public platform: Platform, public userService: UserService, public messageSerice: MessageService) {
+  constructor(public platform: Platform, public userService: UserService, public messageService: MessageService) {
 
     if( userService.isLoggedIn() || !platform.is('cordova') ){
       this.rootPage = PrincipalPage;
