@@ -6,12 +6,12 @@ import * as GeoFire from 'geofire';
 export class FirebaseService {
 
   FIREBASE_URL = 'https://zapbus.firebaseio.com/';
-  firebase: Firebase;
-  geofire: GeoFire;
+  static firebase: Firebase;
+  static geofire: GeoFire;
 
   constructor() {
-      this.firebase = new Firebase( this.FIREBASE_URL );
-      this.geofire = new GeoFire(this.firebase);
+      FirebaseService.firebase = new Firebase( this.FIREBASE_URL );
+      FirebaseService.geofire = new GeoFire(FirebaseService.firebase);
   }
 
 
@@ -19,7 +19,7 @@ export class FirebaseService {
   /*          FIREBASE        */
   /* ------------------------ */
   syncList(list, path) {
-    let firebaseRef = this.firebase.child(path);
+    let firebaseRef = FirebaseService.firebase.child(path);
 
     firebaseRef.on('child_added', function _add(snap, prevChild) {
       var data = snap.val();
@@ -55,13 +55,13 @@ export class FirebaseService {
   }
 
   add(object, path): Firebase {
-    let remote = this.firebase.child(path).push();
+    let remote = FirebaseService.firebase.child(path).push();
     remote.set(object);
     return remote;
   }
 
   update(object, values, path) {
-    this.firebase.child(path).child(object.$id).update(values);
+    FirebaseService.firebase.child(path).child(object.$id).update(values);
   }
 
 
@@ -69,12 +69,45 @@ export class FirebaseService {
   /* ------------------------ */
   /*          GEOFIRE         */
   /* ------------------------ */
+  syncListByDistance(list, path, latitude, longitude) {
+    //let firebaseRef = this.firebase.child(path);
+    var geoQuery = FirebaseService.geofire.query({
+      center: [latitude, longitude],
+      radius: 10.5
+    });
+
+
+    geoQuery.on('key_entered', function _add(key, location, distance) {
+      console.log(key + " entered query at " + location + " (" + distance + " km from center)");
+
+      let firebaseQuery = FirebaseService.firebase.child(path).child(key);
+      firebaseQuery.once("value", function(data) {
+        let message = data.val();
+        message.distance = distance;
+
+        //var pos = FirebaseService.positionAfter(list, prevChild);
+        list.push(message)
+      });
+    });
+
+    geoQuery.on('key_exited', function _remove(key, location, distance) {
+      var i = FirebaseService.positionFor(list, key);
+      if( i > -1 ) {
+        list.splice(i, 1);
+      }
+    });
+
+    geoQuery.on('ready', function () {
+      geoQuery.cancel();
+    });
+  }
+
   addLocation(key, latitude, longitude){
-    this.geofire.set(key, [latitude, longitude]);
+    FirebaseService.geofire.set(key, [latitude, longitude]);
   }
 
   getLocation(key): any {
-    return this.geofire.get(key);
+    return FirebaseService.geofire.get(key);
   }
 
 
