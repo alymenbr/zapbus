@@ -22,10 +22,14 @@ export class FirebaseService {
     let firebaseRef = FirebaseService.firebase.child(path);
 
     firebaseRef.on('child_added', function _add(snap, prevChild) {
+      list.push( snap.val() );
+
+      /*
       var data = snap.val();
       data.$id = snap.key(); // assumes data is always an object
       var pos = FirebaseService.positionAfter(list, prevChild);
       list.splice(pos, 0, data);
+      */
     });
 
     firebaseRef.on('child_removed', function _remove(snap) {
@@ -70,7 +74,6 @@ export class FirebaseService {
   /*          GEOFIRE         */
   /* ------------------------ */
   syncListByDistance(list, path, latitude, longitude) {
-    //let firebaseRef = this.firebase.child(path);
     var geoQuery = FirebaseService.geofire.query({
       center: [latitude, longitude],
       radius: 10.5
@@ -78,12 +81,11 @@ export class FirebaseService {
 
 
     geoQuery.on('key_entered', function _add(key, location, distance) {
-      console.log(key + " entered query at " + location + " (" + distance + " km from center)");
 
       let firebaseQuery = FirebaseService.firebase.child(path).child(key);
       firebaseQuery.once("value", function(data) {
         let message = data.val();
-        message.distance = distance;
+        //message.distance = distance;
 
         //var pos = FirebaseService.positionAfter(list, prevChild);
         list.push(message)

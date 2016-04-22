@@ -21,7 +21,7 @@ export class MensagensProximasPage {
   messages: Array<Message>;
 
   constructor( public nav: NavController, public msgService: MessageService, public userService: UserService) {
-
+    this.messages = new Array<Message>();
   }
 
   onPageWillEnter() {

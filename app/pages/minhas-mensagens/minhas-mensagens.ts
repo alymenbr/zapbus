@@ -20,6 +20,7 @@ export class MinhasMensagensPage {
   messages: Array<Message>;
 
   constructor( public nav: NavController, public msgService: MessageService, public userService: UserService) {
+    this.messages = new Array<Message>();
   }
 
   onPageWillEnter() {
