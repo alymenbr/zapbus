@@ -37,10 +37,12 @@ export class UserService{
     let promise = new Promise<Geolocation>((resolve, reject) => {promiseResult = resolve; promiseError = reject});
 
     Geolocation.getCurrentPosition().then( data => {
+      debugger;
       let geolocation = new GeoLocation(data.coords.latitude, data.coords.longitude);
       promiseResult( geolocation );
     })
     .catch( (error) => {
+      debugger;
       promiseError(error.errorMessage);
     });
 

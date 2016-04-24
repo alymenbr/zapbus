@@ -11,6 +11,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="http://*/*" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
@@ -32,9 +33,9 @@
     <plugin name="cordova-plugin-splashscreen" spec="~3.2.1" />
     <plugin name="cordova-plugin-statusbar" spec="~2.1.2" />
     <plugin name="ionic-plugin-keyboard" spec="~2.0.1" />
-    <plugin name="cordova-plugin-facebook4" spec="https://github.com/jeduan/cordova-plugin-facebook4#aff9a08a86cc6c6a18019f7adc2896ddf97c11cd" source="git">
+    <engine name="android" spec="~4.1.1" />
+    <plugin name="cordova-plugin-facebook4" spec="https://github.com/jeduan/cordova-plugin-facebook4#aff9a08a86cc6c6a18019f7adc2896ddf97c11cd">
         <variable name="APP_ID" value="1976368085920808" />
         <variable name="APP_NAME" value="ZapBus" />
     </plugin>
-    <engine name="android" spec="~4.1.1" />
 </widget>

@@ -27,6 +27,7 @@ export class MensagensProximasPage {
 
   onPageWillEnter() {
     this.userService.getUserLocation().then( (result) => {
+      debugger;
       this.carregarMensagens(result.latitude, result.longitude);
     })
 
