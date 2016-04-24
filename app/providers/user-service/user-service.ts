@@ -37,12 +37,11 @@ export class UserService{
     let promise = new Promise<Geolocation>((resolve, reject) => {promiseResult = resolve; promiseError = reject});
 
     Geolocation.getCurrentPosition().then( data => {
-      debugger;
       let geolocation = new GeoLocation(data.coords.latitude, data.coords.longitude);
       promiseResult( geolocation );
     })
     .catch( (error) => {
-      debugger;
+      console.log("UserService.getUserLocation(): " + error.errorMessage);
       promiseError(error.errorMessage);
     });
 
@@ -72,11 +71,12 @@ export class UserService{
               this.saveUser();
               promiseResult(this);
             })
-          .catch( (error) => promiseError(error.errorMessage));
+          .catch( (error) => console.log("UserService.login(): " + error.errorMessage) );
         })
-        .catch( (error) => promiseError(error.errorMessage));
+        .catch( (error) => console.log("UserService.login(): " + error.errorMessage) );
     })
     .catch( (error) => {
+      console.log("UserService.login(): " + error.errorMessage);
       promiseError(error.errorMessage);
     });
 

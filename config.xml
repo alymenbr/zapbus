@@ -38,4 +38,5 @@
         <variable name="APP_ID" value="1976368085920808" />
         <variable name="APP_NAME" value="ZapBus" />
     </plugin>
+    <plugin name="cordova-plugin-geolocation" spec="~2.2.0" />
 </widget>
