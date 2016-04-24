@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-navbar *navbar>
+<ion-navbar zapred *navbar>
   <ion-title>Mensagem</ion-title>
 </ion-navbar>
 
@@ -44,11 +44,11 @@
      <ion-item>
          <button primary clear item-left>
            <ion-icon name="thumbs-up"></ion-icon>
-           <div>{{msg.approvals}}</div>
+           <div>{{msg.approvals}} aprovações</div>
          </button>
          <button danger clear item-left>
            <ion-icon name="thumbs-down"></ion-icon>
-           <div>{{msg.reprovals}}</div>
+           <div>{{msg.reprovals}} reprovações</div>
          </button>
          <ion-note item-right>
            {{msg.points}} {{msg.points == 1? 'ponto': 'pontos'}}
