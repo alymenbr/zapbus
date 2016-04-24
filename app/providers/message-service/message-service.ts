@@ -21,7 +21,6 @@ export class MessageService {
   }
 
   syncMensagensProximas(messageList, latitude, longitude) {
-    debugger;
     this.firebaseService.syncListByDistance(messageList, this.PATH, latitude, longitude);
   }
 

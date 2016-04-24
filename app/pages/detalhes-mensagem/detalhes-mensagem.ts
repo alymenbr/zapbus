@@ -48,11 +48,11 @@ export class DetalhesMensagemPage {
   }
 
   fillAprovallText(): string {
-    return this.hasApproved()? "Você aprovou!" : "Aprovar";
+    return this.hasApproved()? "Aprovado!" : "Aprovar";
   }
 
   fillReprovallText(): string {
-    return this.hasReproved()? "Você reprovou!" : "Reprovar";
+    return this.hasReproved()? "Reprovado!" : "Reprovar";
   }
 
   hasApproved(){

@@ -66,10 +66,14 @@ export class FirebaseService {
       let firebaseQuery = FirebaseService.firebase.child(path).child(key);
       firebaseQuery.once("value", function(data) {
         let message = data.val();
-        message.distance = distance;
 
-        var pos = FirebaseService.selectPositionByDistance(list, distance);
-        list.splice(pos, 0, message);
+        if(message.points > 0)
+        {
+          message.distance = distance;
+
+          var pos = FirebaseService.selectPositionByDistance(list, distance);
+          list.splice(pos, 0, message);
+        }
       });
     });
 

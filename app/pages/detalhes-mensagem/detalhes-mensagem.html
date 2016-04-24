@@ -19,7 +19,8 @@
       <ion-avatar item-left>
         <img src={{msg.avatarUrl}}>
       </ion-avatar>
-      <h4><ion-badge secondary>{{msg.linhaOnibus}}</ion-badge>{{msg.detail}}</h4>
+      <h4><ion-badge secondary item-left>Linha {{msg.linhaOnibus}}</ion-badge></h4>
+      <h4>{{msg.detail}}</h4>
       <p>Deixado por <em primary>{{msg.authorName}}</em> em {{msg.time | timeToString}}</p>
     </ion-item>
 
@@ -50,9 +51,9 @@
            <ion-icon name="thumbs-down"></ion-icon>
            <div>{{msg.reprovals}} reprovações</div>
          </button>
-         <ion-note item-right>
+         <ion-badge light item-right>
            {{msg.points}} {{msg.points == 1? 'ponto': 'pontos'}}
-         </ion-note>
+         </ion-badge>
        </ion-item>
 
   </ion-card>
@@ -74,7 +75,7 @@
 
       <ion-item>
         <ion-input placeholder='Escreva seu comentário aqui' [(ngModel)]="novoComentario" type="text"></ion-input>
-        <button secondary item-right (click)='sendComment()'>Enviar</button>
+        <button secondary item-right (click)='sendComment()'><ion-icon name="send"></ion-icon>Enviar</button>
       </ion-item>
 
 

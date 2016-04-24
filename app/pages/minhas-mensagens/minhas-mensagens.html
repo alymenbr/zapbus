@@ -14,9 +14,13 @@
   <ion-card *ngFor="#msg of messages" (click)="openDetalhesMensagemPage(msg)">
 
     <ion-item text-wrap>
-      <ion-badge secondary item-left>{{msg.linhaOnibus}}</ion-badge>
+      <ion-avatar item-left>
+        <img src={{msg.avatarUrl}}>
+      </ion-avatar>
+      <h4><ion-badge secondary item-left>Linha {{msg.linhaOnibus}}</ion-badge></h4>
       <h4>{{msg.detail}}</h4>
-      <p>Deixado por <em primary>{{msg.authorName}}</em> em {{msg.time | timeToString}}</p>
+      <p>Deixado por <em danger>{{msg.authorName}}</em> em {{msg.time | timeToString}}</p>
+      <ion-badge light item-right>{{msg.points}} {{msg.points == 1? 'ponto': 'pontos'}}</ion-badge>
     </ion-item>
 
   </ion-card>

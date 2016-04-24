@@ -20,6 +20,8 @@ import {DistanceToString} from '../../pipes/distance-to-string';
 export class MensagensProximasPage {
 
   messages: Array<Message>;
+  lastLatitude: any;
+  lastLongitude: any;
 
   constructor( public nav: NavController, public msgService: MessageService, public userService: UserService) {
 
@@ -27,15 +29,19 @@ export class MensagensProximasPage {
 
   onPageWillEnter() {
     this.userService.getUserLocation().then( (result) => {
-      debugger;
       this.carregarMensagens(result.latitude, result.longitude);
     })
 
   }
 
-  carregarMensagens(latitude, longitude) {
+  carregarMensagens(newLatitude, newLongitude) {
+    if(this.lastLatitude == newLatitude && this.lastLongitude == newLongitude)
+      return;
+
     this.messages = new Array<Message>();
-    this.msgService.syncMensagensProximas(this.messages, latitude, longitude);
+    this.lastLatitude = newLatitude;
+    this.lastLongitude = newLongitude;
+    this.msgService.syncMensagensProximas(this.messages, newLatitude, newLongitude);
   }
 
   openCriarMensagemPage(){

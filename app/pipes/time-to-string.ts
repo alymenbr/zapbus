@@ -5,7 +5,7 @@ import {Pipe} from 'angular2/core';
 })
 export class TimeToString {
 
-  dateFormat = {  year: "numeric", month: "short", day: "numeric",
+  dateFormat = {  month: "short", day: "numeric",
                   hour: "2-digit", minute: "2-digit", hour12: false
   };
 
