@@ -5,23 +5,31 @@
   Ionic pages and navigation.
 -->
 <ion-navbar zapred *navbar>
-  <ion-title>Crie uma mensagem</ion-title>
+  <ion-title>Crie sua mensagem</ion-title>
 </ion-navbar>
 
 <ion-content padding class="criar-mensagem">
-  <p>Sua mensagem ficará visível para todos os passageiros próximos a onde seu ônibus está agora!</p>
-  <!-- <img src='img/maps.png'/> -->
-  <div id="map"></div>
+  <ion-card>
+    <ion-card-header>
+       Sua mensagem será visível para passageiros próximos daqui!
+     </ion-card-header>
 
-  <ion-item>
-    <ion-label stacked>Linha de ônibus:</ion-label>
-    <ion-input maxlength="10" [(ngModel)]="linhaOnibus" type="text"></ion-input>
-  </ion-item>
+      <div id="map"></div>
+  </ion-card>
 
-  <ion-item>
-    <ion-label stacked>Mensagem</ion-label>
-    <ion-input maxlength="140" [(ngModel)]="novaMensagem" type="text"></ion-input>
-  </ion-item>
+  <ion-card>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Sua linha de ônibus:</ion-label>
+          <ion-input maxlength="10" [(ngModel)]="linhaOnibus" type="text"></ion-input>
+        </ion-item>
 
-  <button secondary full large (click)="saveMessage()"><ion-icon name="add-circle"></ion-icon>Criar Agora!</button>
+        <ion-item>
+          <ion-label floating>Sua mensagem:</ion-label>
+          <ion-input maxlength="140" [(ngModel)]="novaMensagem" type="text"></ion-input>
+        </ion-item>
+      </ion-list>
+  </ion-card>
+
+  <button secondary block large (click)="saveMessage()"><ion-icon name="add-circle"></ion-icon>Criar Agora!</button>
 </ion-content>
