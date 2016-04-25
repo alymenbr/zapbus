@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-navbar zapred *navbar>
-  <ion-title>Mensagem</ion-title>
+  <ion-title>Detalhes da Mensagem</ion-title>
 </ion-navbar>
 
 
@@ -15,6 +15,10 @@
 <ion-content padding class="detalhes-mensagem">
 
   <ion-card>
+    <ion-card-header>
+       Linha {{msg.linhaOnibus}}
+    </ion-card-header>
+
     <ion-item text-wrap>
       <div item-left>
         <ion-avatar>
@@ -23,7 +27,7 @@
         <ion-badge light item-right>{{msg.points}} {{msg.points == 1? 'ponto': 'pontos'}}</ion-badge>
       </div>
 
-      <h4><ion-badge secondary item-left>Linha {{msg.linhaOnibus}}</ion-badge>por <em primary>{{msg.authorName}}</em></h4>
+      <h4>por <em primary>{{msg.authorName}}:</em></h4>
       <h4>{{msg.detail}}</h4>
       <em light>em {{msg.time | timeToString}}</em>
     </ion-item>
@@ -69,11 +73,12 @@
           <img src={{comment.avatarUrl}}>
         </ion-avatar>
         <h3>{{comment.detail}}</h3>
-        <p>por <em primary>{{comment.author}}</em> em {{comment.time | timeToString}}</p>
+        <p>por <em primary>{{comment.author}}</em></p>
+        <em light>em {{comment.time | timeToString}}</em>
       </ion-item>
 
       <ion-item>
-        <ion-input placeholder='Escreva seu comentário aqui' [(ngModel)]="novoComentario" type="text"></ion-input>
+        <ion-input placeholder='escreva aqui' [(ngModel)]="novoComentario" type="text"></ion-input>
         <button secondary item-right (click)='sendComment()'><ion-icon name="send"></ion-icon>Enviar</button>
       </ion-item>
 

@@ -12,6 +12,10 @@
 
   <ion-card *ngFor="#msg of messages" (click)="openDetalhesMensagemPage(msg)">
 
+    <ion-card-header>
+       Linha {{msg.linhaOnibus}}
+    </ion-card-header>
+
     <ion-item text-wrap>
       <div item-left>
         <ion-avatar>
@@ -20,7 +24,7 @@
         <ion-badge primary item-right>{{msg.distance | distanceToString}}</ion-badge>
       </div>
 
-      <h4><ion-badge secondary item-left>Linha {{msg.linhaOnibus}}</ion-badge>por <em primary>{{msg.authorName}}</em></h4>
+      <h4>por <em primary>{{msg.authorName}}:</em></h4>
       <h4>{{msg.detail}}</h4>
       <em light>em {{msg.time | timeToString}}</em>
     </ion-item>
