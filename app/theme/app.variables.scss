@@ -9,17 +9,8 @@
 // Ionic's default Sass variable values. App Shared Sass imports belong
 // in the app.core.scss file and not this file. Sass variables specific
 // to the mode belong in either the app.ios.scss or app.md.scss files.
-$card-ios-margin-bottom: 15px;
-$card-md-margin-bottom: 15px;
 
-$card-md-box-shadow:  0 2px 2px 0 rgba(0, 0, 0, .24), 0 3px 1px -2px rgba(0, 0, 0, .3), 0 1px 5px 0 rgba(0, 0, 0, .22);
-$card-ios-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .24), 0 3px 1px -2px rgba(0, 0, 0, .3), 0 1px 5px 0 rgba(0, 0, 0, .22);
 
-$card-ios-border-radius: 3px;
-$card-md-border-radius:  3px;
-
-$button-ios-border-radius: 3px;
-$button-md-border-radius:  3px;
 
 
 // App Shared Color Variables
@@ -31,11 +22,43 @@ $button-md-border-radius:  3px;
 // Both iOS and MD colors can be further customized if colors
 // are different per mode.
 
+
 $colors: (
-  primary:    #536DFE,
-  secondary:  #29BB42,
-  danger:     #F44336,
-  light:      #727272,
-  dark:       #222,
-  zapred:     #D32F2F
+  primary-dark:   (base: #1976D2, contrast: #ffffff),
+  primary:        (base: #2196F3, contrast: #ffffff),
+  primary-light:  (base: #BBDEFB, contrast: #000000),
+  accent:         (base: #FF5722, contrast: #ffffff),
+
+  secondary:      #29BB42,
+  danger:         #F44336,
+  light:          #B6B6B6,
+  dark:           #727272
 );
+
+/** ORANGE - BLUE
+  primary-dark:   (base: #E64A19, contrast: #ffffff),
+  primary:        (base: #FF5722, contrast: #ffffff),
+  primary-light:  (base: #FFCCBC, contrast: #000000),
+  accent:         (base: #448AFF, contrast: #ffffff),
+*/
+
+/** RED - BLUE
+  primary-dark:   (base: #D32F2F, contrast: #ffffff),
+  primary:        (base: #F44336, contrast: #ffffff),
+  primary-light:  (base: #FFCDD2, contrast: #000000),
+  accent:         (base: #448AFF, contrast: #ffffff),
+*/
+
+/** BLUE - RED
+  primary-dark:   (base: #1976D2, contrast: #ffffff),
+  primary:        (base: #2196F3, contrast: #ffffff),
+  primary-light:  (base: #BBDEFB, contrast: #000000),
+  accent:         (base: #FF5252, contrast: #ffffff),
+*/
+
+/** BLUE - DEEP ORANGE
+  primary-dark:   (base: #1976D2, contrast: #ffffff),
+  primary:        (base: #2196F3, contrast: #ffffff),
+  primary-light:  (base: #BBDEFB, contrast: #000000),
+  accent:         (base: #FF5722, contrast: #ffffff),
+*/

@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-navbar zapred *navbar>
+<ion-navbar primary-dark *navbar>
   <ion-title>Minhas Mensagens</ion-title>
 </ion-navbar>
 
@@ -21,12 +21,12 @@
         <ion-avatar>
           <img src={{msg.avatarUrl}}>
         </ion-avatar>
-        <ion-badge light item-right>{{msg.points}} {{msg.points == 1? 'ponto': 'pontos'}}</ion-badge>
+        <ion-badge primary-light item-right>{{msg.points}} {{msg.points == 1? 'ponto': 'pontos'}}</ion-badge>
       </div>
 
-      <h4>por <em primary>{{msg.authorName}}:</em></h4>
+      <h4>por <em accent>{{msg.authorName}}:</em></h4>
       <h4>{{msg.detail}}</h4>
-      <em light>em {{msg.time | timeToString}}</em>
+      <em dark>em {{msg.time | timeToString}}</em>
     </ion-item>
 
   </ion-card>

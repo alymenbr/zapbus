@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-navbar zapred *navbar>
+<ion-navbar primary-dark *navbar>
   <ion-title>Detalhes da Mensagem</ion-title>
 </ion-navbar>
 
@@ -24,12 +24,12 @@
         <ion-avatar>
           <img src={{msg.avatarUrl}}>
         </ion-avatar>
-        <ion-badge light item-right>{{msg.points}} {{msg.points == 1? 'ponto': 'pontos'}}</ion-badge>
+        <ion-badge primary-light item-right>{{msg.points}} {{msg.points == 1? 'ponto': 'pontos'}}</ion-badge>
       </div>
 
-      <h4>por <em primary>{{msg.authorName}}:</em></h4>
+      <h4>por <em accent>{{msg.authorName}}:</em></h4>
       <h4>{{msg.detail}}</h4>
-      <em light>em {{msg.time | timeToString}}</em>
+      <em dark>em {{msg.time | timeToString}}</em>
     </ion-item>
 
     <div id="map"></div>
@@ -42,7 +42,7 @@
          </button>
        </ion-col>
        <ion-col text-right>
-         <button medium danger (click)='reproveMessage()'>
+         <button medium accent (click)='reproveMessage()'>
            <ion-icon name='thumbs-down'></ion-icon>
            {{fillReprovallText()}}
          </button>
@@ -52,11 +52,11 @@
      <ion-item>
          <button primary clear item-left>
            <ion-icon name="thumbs-up"></ion-icon>
-           <div>{{msg.approvals}} aprovações</div>
+           <div>{{msg.approvals}} {{msg.approvals == 1? 'aprovação': 'aprovações'}}</div>
          </button>
-         <button danger clear item-right>
+         <button accent clear item-right>
            <ion-icon name="thumbs-down"></ion-icon>
-           <div>{{msg.reprovals}} reprovações</div>
+           <div>{{msg.reprovals}} {{msg.reprovals == 1? 'reprovação': 'reprovações'}}</div>
          </button>
        </ion-item>
 
@@ -73,13 +73,13 @@
           <img src={{comment.avatarUrl}}>
         </ion-avatar>
         <h3>{{comment.detail}}</h3>
-        <p>por <em primary>{{comment.author}}</em></p>
+        <p>por <em accent>{{comment.author}}</em></p>
         <em light>em {{comment.time | timeToString}}</em>
       </ion-item>
 
       <ion-item>
         <ion-input placeholder='escreva aqui' [(ngModel)]="novoComentario" type="text"></ion-input>
-        <button secondary item-right (click)='sendComment()'><ion-icon name="send"></ion-icon>Enviar</button>
+        <button accent item-right (click)='sendComment()'><ion-icon name="send"></ion-icon>Enviar</button>
       </ion-item>
 
 
