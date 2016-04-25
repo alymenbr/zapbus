@@ -11,7 +11,7 @@
 <ion-content padding class="criar-mensagem">
   <ion-card>
     <ion-card-header>
-       Sua mensagem será visível para passageiros próximos daqui!
+       Visível para passageiros próximos a:
      </ion-card-header>
 
       <div id="map"></div>
@@ -31,5 +31,8 @@
       </ion-list>
   </ion-card>
 
-  <button secondary block large (click)="saveMessage()"><ion-icon name="add-circle"></ion-icon>Criar Agora!</button>
 </ion-content>
+
+<ion-toolbar position="bottom" style="margin-bottom: 0.5em;">
+  <button secondary block large (click)="saveMessage()"><ion-icon name="add-circle"></ion-icon>Criar!</button>
+</ion-toolbar>

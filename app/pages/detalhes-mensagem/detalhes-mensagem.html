@@ -16,15 +16,18 @@
 
   <ion-card>
     <ion-item text-wrap>
-      <ion-avatar item-left>
-        <img src={{msg.avatarUrl}}>
-      </ion-avatar>
-      <h4><ion-badge secondary item-left>Linha {{msg.linhaOnibus}}</ion-badge></h4>
+      <div item-left>
+        <ion-avatar>
+          <img src={{msg.avatarUrl}}>
+        </ion-avatar>
+        <ion-badge light item-right>{{msg.points}} {{msg.points == 1? 'ponto': 'pontos'}}</ion-badge>
+      </div>
+
+      <h4><ion-badge secondary item-left>Linha {{msg.linhaOnibus}}</ion-badge>por <em primary>{{msg.authorName}}</em></h4>
       <h4>{{msg.detail}}</h4>
-      <p>Deixado por <em primary>{{msg.authorName}}</em> em {{msg.time | timeToString}}</p>
+      <em light>em {{msg.time | timeToString}}</em>
     </ion-item>
 
-    <!-- <img src={{msg.mapUrl}}/> -->
     <div id="map"></div>
 
     <ion-row no-padding>
@@ -47,24 +50,20 @@
            <ion-icon name="thumbs-up"></ion-icon>
            <div>{{msg.approvals}} aprovações</div>
          </button>
-         <button danger clear item-left>
+         <button danger clear item-right>
            <ion-icon name="thumbs-down"></ion-icon>
            <div>{{msg.reprovals}} reprovações</div>
          </button>
-         <ion-badge light item-right>
-           {{msg.points}} {{msg.points == 1? 'ponto': 'pontos'}}
-         </ion-badge>
        </ion-item>
 
   </ion-card>
 
   <ion-card>
+    <ion-card-header>
+      Comentários da mensagem
+    </ion-card-header>
+
     <ion-list>
-
-      <ion-list-header>
-      <h2 primary>Comentários:</h2>
-      </ion-list-header>
-
       <ion-item text-wrap *ngFor="#comment of comentarios">
         <ion-avatar item-left>
           <img src={{comment.avatarUrl}}>

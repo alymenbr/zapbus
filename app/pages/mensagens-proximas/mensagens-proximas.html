@@ -9,21 +9,26 @@
 </ion-navbar>
 
 <ion-content padding class="mensagens-proximas">
-  <p>Mensagens deixadas por passageiros perto de onde você está!</p>
 
   <ion-card *ngFor="#msg of messages" (click)="openDetalhesMensagemPage(msg)">
 
     <ion-item text-wrap>
-      <ion-avatar item-left>
-        <img src={{msg.avatarUrl}}>
-      </ion-avatar>
-      <h4><ion-badge secondary item-left>Linha {{msg.linhaOnibus}}</ion-badge></h4>
+      <div item-left>
+        <ion-avatar>
+          <img src={{msg.avatarUrl}}>
+        </ion-avatar>
+        <ion-badge primary item-right>{{msg.distance | distanceToString}}</ion-badge>
+      </div>
+
+      <h4><ion-badge secondary item-left>Linha {{msg.linhaOnibus}}</ion-badge>por <em primary>{{msg.authorName}}</em></h4>
       <h4>{{msg.detail}}</h4>
-      <p>Deixado por <em danger>{{msg.authorName}}</em> em {{msg.time | timeToString}}</p>
-      <ion-badge light item-right>{{msg.distance | distanceToString}}</ion-badge>
+      <em light>em {{msg.time | timeToString}}</em>
     </ion-item>
 
   </ion-card>
 
-  <button secondary block large (click)="openCriarMensagemPage()"><ion-icon name="add-circle"></ion-icon>Criar mensagem</button>
 </ion-content>
+
+<ion-toolbar position="bottom" style="margin-bottom: 0.5em;">
+  <button secondary block large (click)="openCriarMensagemPage()"><ion-icon name="add-circle"></ion-icon>Criar mensagem</button>
+</ion-toolbar>

@@ -5,22 +5,24 @@
   Ionic pages and navigation.
 -->
 <ion-navbar zapred *navbar>
-  <ion-title>Minhas Mensagens</ion-title>
+  <ion-title>Suas Mensagens</ion-title>
 </ion-navbar>
 
 <ion-content padding class="minhas-mensagens">
-  <p>Encontre aqui as mensagens que você criou, aprovou ou comentou!</p>
 
   <ion-card *ngFor="#msg of messages" (click)="openDetalhesMensagemPage(msg)">
 
     <ion-item text-wrap>
-      <ion-avatar item-left>
-        <img src={{msg.avatarUrl}}>
-      </ion-avatar>
-      <h4><ion-badge secondary item-left>Linha {{msg.linhaOnibus}}</ion-badge></h4>
+      <div item-left>
+        <ion-avatar>
+          <img src={{msg.avatarUrl}}>
+        </ion-avatar>
+        <ion-badge light item-right>{{msg.points}} {{msg.points == 1? 'ponto': 'pontos'}}</ion-badge>
+      </div>
+
+      <h4><ion-badge secondary item-left>Linha {{msg.linhaOnibus}}</ion-badge>por <em primary>{{msg.authorName}}</em></h4>
       <h4>{{msg.detail}}</h4>
-      <p>Deixado por <em danger>{{msg.authorName}}</em> em {{msg.time | timeToString}}</p>
-      <ion-badge light item-right>{{msg.points}} {{msg.points == 1? 'ponto': 'pontos'}}</ion-badge>
+      <em light>em {{msg.time | timeToString}}</em>
     </ion-item>
 
   </ion-card>

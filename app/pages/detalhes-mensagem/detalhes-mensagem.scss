@@ -6,6 +6,12 @@
 
   #map {
       width: 100%;
-      height: 15em !important;
+      height: 12em !important;
+  }
+
+  ion-card-header {
+    background-color: #29BB42;
+    color: #FFFFFF;
+    font-weight: bold;
   }
 }
