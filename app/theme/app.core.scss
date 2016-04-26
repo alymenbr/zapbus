@@ -30,6 +30,10 @@ ion-card ion-card-header {
   padding-bottom: 5px;
 }
 
+ion-navbar ion-title {
+  text-overflow: clip;
+}
+
 $card-ios-margin-bottom: 15px;
 $card-md-margin-bottom: 15px;
 

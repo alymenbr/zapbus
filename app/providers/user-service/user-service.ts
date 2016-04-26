@@ -24,7 +24,7 @@ export class UserService{
 
     if( !this.platform.is('cordova') ){
       let defaultUser = new User("980426748671892");
-      defaultUser.name = "Browser";
+      defaultUser.name = "Pedro";
       defaultUser.avatarUrl = "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c73.72.814.814/s60x60/308666_518520878195817_146980306_n.jpg?oh=18eed5aa21aa3a120361f76828a17774&oe=57832D87&__gda__=1471809144_9775c6ba5ef52fff6a8048978249bd78";
       UserService.currentUser = defaultUser;
     }
