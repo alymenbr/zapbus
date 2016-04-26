@@ -35,7 +35,9 @@ export class MensagensProximasPage {
   }
 
   carregarMensagens(newLatitude, newLongitude) {
-    if(this.lastLatitude == newLatitude && this.lastLongitude == newLongitude)
+    if( this.lastLatitude == newLatitude &&
+        this.lastLongitude == newLongitude &&
+        this.messages.length > 0 )
       return;
 
     this.messages = new Array<Message>();

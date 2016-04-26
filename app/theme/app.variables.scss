@@ -24,16 +24,23 @@
 
 
 $colors: (
-  primary-dark:   (base: #303F9F, contrast: #ffffff),
-  primary:        (base: #3F51B5, contrast: #ffffff),
-  primary-light:  (base: #C5CAE9, contrast: #000000),
-  accent:         (base: #009688, contrast: #ffffff),
+  primary-dark:   (base: #1976D2, contrast: #ffffff),
+  primary:        (base: #2196F3, contrast: #ffffff),
+  primary-light:  (base: #BBDEFB, contrast: #000000),
+  accent:         (base: #FF5722, contrast: #ffffff),
 
   secondary:      #009688,
   danger:         #F44336,
   light:          #B6B6B6,
   dark:           #727272
 );
+
+/** INDIGO - TEAL
+  primary-dark:   (base: #303F9F, contrast: #ffffff),
+  primary:        (base: #3F51B5, contrast: #ffffff),
+  primary-light:  (base: #C5CAE9, contrast: #000000),
+  accent:         (base: #009688, contrast: #ffffff),
+*/
 
 /** ORANGE - BLUE
   primary-dark:   (base: #E64A19, contrast: #ffffff),
@@ -55,6 +62,8 @@ $colors: (
   primary-light:  (base: #BBDEFB, contrast: #000000),
   accent:         (base: #FF5252, contrast: #ffffff),
 */
+
+
 
 /** BLUE - DEEP ORANGE
   primary-dark:   (base: #1976D2, contrast: #ffffff),
