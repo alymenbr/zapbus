@@ -4,13 +4,15 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-navbar primary-dark *navbar>
-  <ion-title>ZAPBUS</ion-title>
-</ion-navbar>
+<ion-toolbar primary-dark position="top">
+  <ion-title>Bem vindo ao ZapBus!</ion-title>
+</ion-toolbar>
 
 <ion-content padding class="login">
+  <img padding src="img/zapbus.png">
 
-  <img src="img/zapbus.png">
+  <h1 padding-top dark>Converse com outros passageiros perto de você!</h1>
+  <h1 padding-bottom accent>Vamos começar?</h1>
 
-  <button accent block large (click)="startFacebookLogin()"><ion-icon name="thumbs-up"></ion-icon>Login pelo Facebook</button>
+  <button primary-dark block large (click)="startFacebookLogin()"><ion-icon name="thumbs-up"></ion-icon>Login com Facebook</button>
 </ion-content>
