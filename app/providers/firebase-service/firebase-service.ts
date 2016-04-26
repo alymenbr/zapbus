@@ -5,7 +5,7 @@ import * as GeoFire from 'geofire';
 @Injectable()
 export class FirebaseService {
 
-  FIREBASE_URL = 'https://zapbus.firebaseio.com/';
+  FIREBASE_URL = 'https://app.firebaseio.com/';
   static firebase: Firebase;
   static geofire: GeoFire;
 
