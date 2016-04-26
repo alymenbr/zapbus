@@ -1,12 +1,12 @@
 
 <ion-menu [content]="content">
 
-  <ion-toolbar primary-dark>
+  <ion-toolbar top primary-dark>
     <ion-title >ZapBus</ion-title>
   </ion-toolbar>
 
   <ion-content>
-    <ion-item text-wrap>
+    <ion-item padding-bottom text-wrap>
       <ion-avatar item-left>
         <img src={{user.avatarUrl}}>
       </ion-avatar>
@@ -25,8 +25,9 @@
       </button>
     </ion-list>
 
+    <img src="img/inovapps.gif">
+    <img src="img/mc_horizontal.gif">
   </ion-content>
-
 </ion-menu>
 
 <ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
