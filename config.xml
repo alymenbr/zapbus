@@ -81,8 +81,8 @@
   <plugin name="cordova-plugin-statusbar" spec="~2.1.2"/>
   <plugin name="ionic-plugin-keyboard" spec="~2.0.1"/>
   <plugin name="cordova-plugin-facebook4" spec="https://github.com/jeduan/cordova-plugin-facebook4#aff9a08a86cc6c6a18019f7adc2896ddf97c11cd">
-    <variable name="APP_ID" value="1976368085920808"/>
-    <variable name="APP_NAME" value="ZapBus"/>
+    <variable name="APP_ID" value=""/>
+    <variable name="APP_NAME" value=""/>
   </plugin>
   <plugin name="cordova-plugin-geolocation" spec="~2.2.0"/>
   <plugin name="cordova-plugin-splashscreen" spec="~3.2.2"/>
