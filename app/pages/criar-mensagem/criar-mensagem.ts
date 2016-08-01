@@ -1,4 +1,5 @@
-import {Page, NavController} from 'ionic-angular';
+import {NavController} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {MessageService} from '../../providers/message-service/message-service';
 import {UserService} from '../../providers/user-service/user-service';
 import {GeoLocation} from '../../models/geolocation/geolocation';
@@ -9,7 +10,7 @@ import {GeoLocation} from '../../models/geolocation/geolocation';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@Page({
+@Component({
   templateUrl: 'build/pages/criar-mensagem/criar-mensagem.html'
 })
 export class CriarMensagemPage {
@@ -24,7 +25,7 @@ export class CriarMensagemPage {
 
   }
 
-  onPageWillEnter() {
+  ionViewWillEnter() {
     this.setLocation();
   }
 

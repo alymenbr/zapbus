@@ -1,4 +1,5 @@
-import {Page, NavController, Platform, MenuController, IonicApp} from 'ionic-angular';
+import {NavController, Platform, MenuController, App} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {MensagensProximasPage} from '../mensagens-proximas/mensagens-proximas';
 import {MinhasMensagensPage} from '../minhas-mensagens/minhas-mensagens';
 
@@ -8,13 +9,13 @@ import {MinhasMensagensPage} from '../minhas-mensagens/minhas-mensagens';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@Page({
+@Component({
   templateUrl: 'build/pages/principal/principal.html',
 })
 export class PrincipalPage {
 
-  constructor( public app: IonicApp, public nav: NavController, platform: Platform, public menu: MenuController) {
-    
+  constructor( public app: App, public nav: NavController, platform: Platform, public menu: MenuController) {
+
   }
 
   openMensagensProximasPage(){

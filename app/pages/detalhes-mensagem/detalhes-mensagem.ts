@@ -1,4 +1,5 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {MessageService} from '../../providers/message-service/message-service';
 import {UserService} from '../../providers/user-service/user-service';
 import {Message} from '../../models/message/message';
@@ -11,7 +12,7 @@ import {TimeToString} from '../../pipes/time-to-string'
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-@Page({
+@Component({
   templateUrl: 'build/pages/detalhes-mensagem/detalhes-mensagem.html',
   pipes: [TimeToString]
 })
@@ -26,7 +27,7 @@ export class DetalhesMensagemPage {
     this.msg = params.get('message');
   }
 
-  onPageWillEnter() {
+  ionViewWillEnter() {
     this.carregarComentarios();
     this.carregarLocalizacao();
   }

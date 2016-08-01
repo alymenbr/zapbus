@@ -4,9 +4,11 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-navbar primary-dark *navbar>
-  <ion-title>Mensagens Próximas</ion-title>
-</ion-navbar>
+ <ion-header>
+  <ion-navbar primary-dark>
+    <ion-title>Mensagens Próximas</ion-title>
+  </ion-navbar>
+ </ion-header>
 
 <ion-content padding class="mensagens-proximas">
 
@@ -31,8 +33,8 @@
 
   </ion-card>
 
-</ion-content>
+  <ion-toolbar position="bottom" style="margin-bottom: 0.5em;">
+    <button accent block large (click)="openCriarMensagemPage()"><ion-icon name="add-circle"></ion-icon>Criar mensagem</button>
+  </ion-toolbar>
 
-<ion-toolbar position="bottom" style="margin-bottom: 0.5em;">
-  <button accent block large (click)="openCriarMensagemPage()"><ion-icon name="add-circle"></ion-icon>Criar mensagem</button>
-</ion-toolbar>
+</ion-content>

@@ -1,4 +1,5 @@
-import {App, Platform, MenuController, IonicApp, Nav} from 'ionic-angular';
+import {ionicBootstrap, Platform, MenuController, App, Nav} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {PrincipalPage} from './pages/principal/principal';
 import {LoginPage} from './pages/login/login';
 import {provide} from '@angular/core';
@@ -11,9 +12,7 @@ import {UserService} from './providers/user-service/user-service';
 import {MessageService} from './providers/message-service/message-service';
 import {FirebaseService} from './providers/firebase-service/firebase-service';
 
-@App({
-  providers: [FirebaseService, UserService, MessageService, IonicApp, MenuController],
-  config: {}, // http://ionicframework.com/docs/v2/api/config/Config/
+@Component({
   templateUrl: 'build/app.html'
 })
 
@@ -25,7 +24,7 @@ export class MyApp {
                   { icon: 'home', title: 'Minhas Mensagens', component: MinhasMensagensPage },
                   { icon: 'add', title: 'Criar Mensagem', component: CriarMensagemPage } ];
 
-  constructor(public platform: Platform, public userService: UserService, public messageService: MessageService, public app: IonicApp, public menu: MenuController) {
+  constructor(public platform: Platform, public userService: UserService, public messageService: MessageService, public app: App, public menu: MenuController) {
 
     if( userService.isLoggedIn() || !platform.is('cordova') ){
       this.user = userService.getCurrentUser();
@@ -60,7 +59,12 @@ export class MyApp {
 
   logout(){
     this.userService.logout();
-    let nav = this.app.getComponent('nav');
     this.nav.setRoot(LoginPage);
   }
 }
+
+// Pass the main app component as the first argument
+// Pass any providers for your app in the second argument
+// Set any config for your app as the third argument:
+// http://ionicframework.com/docs/v2/api/config/Config/
+ionicBootstrap(MyApp, [FirebaseService, UserService, MessageService, App, MenuController], {});
