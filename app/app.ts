@@ -1,7 +1,8 @@
-import {App, Platform, MenuController, IonicApp} from 'ionic-angular';
+import {App, Platform, MenuController, IonicApp, Nav} from 'ionic-angular';
 import {PrincipalPage} from './pages/principal/principal';
 import {LoginPage} from './pages/login/login';
 import {provide} from '@angular/core';
+import {ViewChild} from '@angular/core';
 import {MensagensProximasPage} from './pages/mensagens-proximas/mensagens-proximas';
 import {MinhasMensagensPage} from './pages/minhas-mensagens/minhas-mensagens';
 import {CriarMensagemPage} from './pages/criar-mensagem/criar-mensagem';
@@ -17,6 +18,7 @@ import {FirebaseService} from './providers/firebase-service/firebase-service';
 })
 
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
   user: any;
   rootPage: any = LoginPage;
   pages: any = [  { icon: 'bus', title: 'Mensagens Próximas', component: MensagensProximasPage },
@@ -53,13 +55,12 @@ export class MyApp {
     this.menu.close();
 
     // navigate to the new page if it is not the current page
-    let nav = this.app.getComponent('nav');
-    nav.push(page.component);
+    this.nav.push(page.component);
   }
 
   logout(){
     this.userService.logout();
     let nav = this.app.getComponent('nav');
-    nav.setRoot(LoginPage);
+    this.nav.setRoot(LoginPage);
   }
 }
