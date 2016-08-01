@@ -1,4 +1,4 @@
-import {Injectable} from 'angular2/core';
+import {Injectable} from '@angular/core';
 import {Facebook, Geolocation} from 'ionic-native';
 import {User} from '../../models/user/user';
 import {GeoLocation} from '../../models/geolocation/geolocation';

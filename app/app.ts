@@ -1,7 +1,7 @@
 import {App, Platform, MenuController, IonicApp} from 'ionic-angular';
 import {PrincipalPage} from './pages/principal/principal';
 import {LoginPage} from './pages/login/login';
-import {provide} from 'angular2/core';
+import {provide} from '@angular/core';
 import {MensagensProximasPage} from './pages/mensagens-proximas/mensagens-proximas';
 import {MinhasMensagensPage} from './pages/minhas-mensagens/minhas-mensagens';
 import {CriarMensagemPage} from './pages/criar-mensagem/criar-mensagem';

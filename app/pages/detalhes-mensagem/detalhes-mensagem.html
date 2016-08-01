@@ -68,7 +68,7 @@
     </ion-card-header>
 
     <ion-list>
-      <ion-item text-wrap *ngFor="#comment of comentarios">
+      <ion-item text-wrap *ngFor="let comment of comentarios">
         <ion-avatar item-left>
           <img src={{comment.avatarUrl}}>
         </ion-avatar>
