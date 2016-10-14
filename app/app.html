@@ -5,10 +5,10 @@
   <ion-toolbar top primary-dark>
     <ion-title >ZapBus</ion-title>
   </ion-toolbar>
-</ion-header>  
+</ion-header>
 
   <ion-content>
-    <ion-item padding-bottom text-wrap>
+    <ion-item text-wrap no-lines>
       <ion-avatar item-left>
         <img src={{user.avatarUrl}}>
       </ion-avatar>
@@ -16,12 +16,12 @@
     </ion-item>
 
     <ion-list no-lines>
-      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button ion-button outline full icon-left *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon [name]="p.icon" item-left></ion-icon>
         {{p.title}}
       </button>
 
-      <button ion-item (click)="logout()">
+      <button ion-button outline full icon-left (click)="logout()">
         <ion-icon name="exit" item-left></ion-icon>
         Sair
       </button>
