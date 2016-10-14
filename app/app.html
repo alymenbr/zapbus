@@ -2,7 +2,7 @@
 <ion-menu [content]="content">
 
 <ion-header>
-  <ion-toolbar top primary-dark>
+  <ion-toolbar top primary-dark>ff
     <ion-title >ZapBus</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,19 +16,19 @@
     </ion-item>
 
     <ion-list no-lines>
-      <button ion-button outline full icon-left *ngFor="let p of pages" (click)="openPage(p)">
+      <button ion-button full icon-left *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon [name]="p.icon" item-left></ion-icon>
         {{p.title}}
       </button>
 
-      <button ion-button outline full icon-left (click)="logout()">
+      <button ion-button full icon-left accent (click)="logout()">
         <ion-icon name="exit" item-left></ion-icon>
         Sair
       </button>
     </ion-list>
 
     <img src="img/inovapps.gif">
-    <img src="img/mc_horizontal.gif">
+    <img src="img/mc_horizontal.png">
   </ion-content>
 </ion-menu>
 
