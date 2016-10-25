@@ -13,7 +13,6 @@
 <ion-content padding class="mensagens-proximas">
 
   <ion-card *ngFor="let msg of messages" (click)="openDetalhesMensagemPage(msg)">
-
     <ion-card-header>
        Linha {{msg.linhaOnibus}}
     </ion-card-header>
@@ -30,8 +29,21 @@
       <h4>{{msg.detail}}</h4>
       <em dark>em {{msg.time | timeToString}}</em>
     </ion-item>
-
   </ion-card>
+
+  <ion-card *ngIf="zeroMessages()" (click)="openCriarMensagemPage()">
+    <ion-card-header>
+       Nenhuma mensagem próxima
+    </ion-card-header>
+
+    <ion-card-content padding-top>
+      <h4>Não encontramos nenhuma mensagem próxima daqui.</h4>
+      <h4></h4>
+      <h4 primary-dark text-center>Toque aqui e crie a primeira!</h4>
+    </ion-card-content>
+  </ion-card>
+
+
 
 </ion-content>
 

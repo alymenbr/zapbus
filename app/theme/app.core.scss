@@ -25,13 +25,8 @@ h3, h4 {
 ion-card ion-card-header {
   background-color: color($colors, primary, base);
   color: color($colors, primary, contrast);
-  font-weight: bold;
   padding-top: 5px;
   padding-bottom: 5px;
-}
-
-ion-navbar ion-title {
-  text-overflow: clip;
 }
 
 $card-ios-margin-bottom: 15px;

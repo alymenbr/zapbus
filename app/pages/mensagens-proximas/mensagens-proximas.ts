@@ -1,4 +1,4 @@
-import {NavController} from 'ionic-angular';
+import {NavController, LoadingController} from 'ionic-angular';
 import {Component} from '@angular/core';
 import {DetalhesMensagemPage} from '../detalhes-mensagem/detalhes-mensagem';
 import {MessageService} from '../../providers/message-service/message-service';
@@ -21,14 +21,16 @@ import {DistanceToString} from '../../pipes/distance-to-string';
 export class MensagensProximasPage {
 
   messages: Array<Message>;
-  lastLatitude: any;
-  lastLongitude: any;
+  loading: any;
 
-  constructor( public nav: NavController, public msgService: MessageService, public userService: UserService) {
+  constructor( public loadingCtrl: LoadingController, public nav: NavController, public msgService: MessageService, public userService: UserService) {
 
   }
 
   ionViewWillEnter() {
+    this.loading = this.loadingCtrl.create({content: 'Procurando...'});
+    this.loading.present();
+
     this.userService.getUserLocation().then( (result) => {
       this.carregarMensagens(result.latitude, result.longitude);
     })
@@ -36,15 +38,11 @@ export class MensagensProximasPage {
   }
 
   carregarMensagens(newLatitude, newLongitude) {
-    if( this.lastLatitude == newLatitude &&
-        this.lastLongitude == newLongitude &&
-        this.messages.length > 0 )
-      return;
 
     this.messages = new Array<Message>();
-    this.lastLatitude = newLatitude;
-    this.lastLongitude = newLongitude;
-    this.msgService.syncMensagensProximas(this.messages, newLatitude, newLongitude);
+    this.msgService.syncMensagensProximas(this.messages, newLatitude, newLongitude).then( (result) => {
+      this.loading.dismiss();
+    });
   }
 
   openCriarMensagemPage(){
@@ -55,4 +53,7 @@ export class MensagensProximasPage {
     this.nav.push(DetalhesMensagemPage, {message: currentMessage});
   }
 
+  zeroMessages() {
+    return this.messages && this.messages.length == 0;
+  }
 }

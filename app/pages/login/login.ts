@@ -21,7 +21,7 @@ export class LoginPage {
 
   startFacebookLogin(){
     this.userService.login().then( (result) => {
-      this.nav.push(PrincipalPage, {});
+      this.nav.setRoot(PrincipalPage);
     })
     .catch( (errorMessage) => console.log(errorMessage) );
   }

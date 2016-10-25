@@ -1,4 +1,4 @@
-import {NavController} from 'ionic-angular';
+import {NavController, LoadingController} from 'ionic-angular';
 import {Component} from '@angular/core';
 import {DetalhesMensagemPage} from '../detalhes-mensagem/detalhes-mensagem';
 import {MessageService} from '../../providers/message-service/message-service';
@@ -19,22 +19,35 @@ import {TimeToString} from '../../pipes/time-to-string';
 export class MinhasMensagensPage {
 
   messages: Array<Message>;
+  loading: any;
 
-  constructor( public nav: NavController, public msgService: MessageService, public userService: UserService) {
+  constructor( public loadingCtrl: LoadingController, public nav: NavController, public msgService: MessageService, public userService: UserService) {
 
   }
 
   ionViewWillEnter() {
+    this.loading = this.loadingCtrl.create({content: 'Procurando...'});
+    this.loading.present();
     this.carregarMensagens();
   }
 
   carregarMensagens() {
     this.messages = new Array<Message>();
-    this.msgService.syncMinhasMensagens(this.messages);
+    this.msgService.syncMinhasMensagens(this.messages).then( (result) => {
+      this.loading.dismiss();
+    });
+  }
+
+  zeroMessages() {
+    return this.messages && this.messages.length == 0;
   }
 
   openDetalhesMensagemPage(currentMessage){
     this.nav.push(DetalhesMensagemPage, {message: currentMessage});
+  }
+
+  goBack() {
+    this.nav.pop();
   }
 
 }

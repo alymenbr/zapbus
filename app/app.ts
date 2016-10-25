@@ -1,8 +1,8 @@
-import {ionicBootstrap, Platform, MenuController, App, Nav} from 'ionic-angular';
+import {ionicBootstrap, Platform, MenuController, App, Nav, Events} from 'ionic-angular';
 import {Component} from '@angular/core';
 import {PrincipalPage} from './pages/principal/principal';
 import {LoginPage} from './pages/login/login';
-import {provide} from '@angular/core';
+import {provide, NgZone} from '@angular/core';
 import {ViewChild} from '@angular/core';
 import {MensagensProximasPage} from './pages/mensagens-proximas/mensagens-proximas';
 import {MinhasMensagensPage} from './pages/minhas-mensagens/minhas-mensagens';
@@ -18,18 +18,20 @@ import {FirebaseService} from './providers/firebase-service/firebase-service';
 
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  user: any;
+  user: any = null;
   rootPage: any = LoginPage;
   pages: any = [  { icon: 'bus', title: 'Mensagens Próximas', component: MensagensProximasPage },
                   { icon: 'home', title: 'Minhas Mensagens', component: MinhasMensagensPage },
                   { icon: 'add', title: 'Criar Mensagem', component: CriarMensagemPage } ];
 
-  constructor(public platform: Platform, public userService: UserService, public messageService: MessageService, public app: App, public menu: MenuController) {
+  constructor(public zone: NgZone, public events: Events, public platform: Platform, public userService: UserService, public messageService: MessageService, public app: App, public menu: MenuController) {
 
     if( userService.isLoggedIn() || !platform.is('cordova') ){
-      this.user = userService.getCurrentUser();
+      this.updateUser();
       this.rootPage = PrincipalPage;
     }
+
+    this.listenToLoginEvents();
 
     platform.ready().then(() => {
       // The platform is now ready. Note: if this callback fails to fire, follow
@@ -49,6 +51,16 @@ export class MyApp {
     });
   }
 
+  listenToLoginEvents() {
+    this.events.subscribe('user:login', () => {
+      this.updateUser();
+    });
+  }
+
+  updateUser(){
+    this.user = this.userService.getCurrentUser()
+  }
+
   openPage(page) {
     // close the menu when clicking a link from the menu
     this.menu.close();
@@ -58,6 +70,7 @@ export class MyApp {
   }
 
   logout(){
+    this.menu.close();
     this.userService.logout();
     this.nav.setRoot(LoginPage);
   }

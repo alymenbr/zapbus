@@ -34,24 +34,20 @@
   "name": "zapbus",
   "description": "zapbus: An Ionic project",
   "cordovaPlugins": [
-    {
-      "variables": {
-        "APP_ID": "1976368085920808",
-        "APP_NAME": "ZapBus"
-      },
-      "locator": "cordova-plugin-facebook4",
-      "id": "cordova-plugin-facebook4"
-    },
-    "cordova-plugin-device",
-    "cordova-plugin-console",
+    "ionic-plugin-keyboard",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-compat",
     "cordova-plugin-whitelist",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard",
     "cordova-plugin-geolocation",
-    "cordova-plugin-splashscreen",
+    "cordova-plugin-device",
     {
-      "locator": "https://github.com/driftyco/cordova-plugin-wkwebview-engine.git",
-      "id": "cordova-plugin-wkwebview-engine"
+      "variables": {
+        "APP_NAME": "ZapBus",
+        "APP_ID": "1976368085920808"
+      },
+      "locator": "https://github.com/Telerik-Verified-Plugins/Facebook.git#ae73cc5a1ec125146cf9e4134656db09405c4f2c",
+      "id": "com.phonegap.plugins.facebookconnect"
     }
   ],
   "cordovaPlatforms": [

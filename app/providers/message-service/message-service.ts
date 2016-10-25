@@ -20,13 +20,13 @@ export class MessageService {
   constructor(public firebaseService: FirebaseService, public userService: UserService) {
   }
 
-  syncMensagensProximas(messageList, latitude, longitude) {
-    this.firebaseService.syncListByDistance(messageList, this.PATH, latitude, longitude);
+  syncMensagensProximas(messageList, latitude, longitude): Promise<number> {
+    return this.firebaseService.syncListByDistance(messageList, this.PATH, latitude, longitude);
   }
 
-  syncMinhasMensagens(messageList){
+  syncMinhasMensagens(messageList): Promise<number> {
     let currentUser = this.userService.getCurrentUser();
-    this.firebaseService.syncListByUser(messageList, this.PATH, currentUser.facebookId);
+    return this.firebaseService.syncListByUser(messageList, this.PATH, currentUser.facebookId);
   }
 
   syncComentariosMensagem(message, commentsList) {

@@ -28,13 +28,21 @@ export class FirebaseService {
     });
   }
 
-  syncListByUser(list, path, userId) {
-    let firebaseRef = FirebaseService.firebase.child(path);
+  syncListByUser(list, path, userId): Promise<number> {
+    return new Promise( (resolve, reject) => {
 
-    firebaseRef.orderByChild("authorId").equalTo( userId ).on('child_added', function _add(snap, prevChild) {
-      let message = snap.val();
-      //message.distance = 0;
-      list.push( snap.val() );
+      let firebaseRef = FirebaseService.firebase.child(path);
+      let query = firebaseRef.orderByChild("authorId").equalTo( userId );
+
+      query.on('child_added', function _add(snap, prevChild) {
+        let message = snap.val();
+        list.push( snap.val() );
+      });
+
+      query.once('value', function () {
+        query.off();
+        resolve(list.length);
+      });
     });
   }
 
@@ -54,32 +62,36 @@ export class FirebaseService {
   /* ------------------------ */
   /*          GEOFIRE         */
   /* ------------------------ */
-  syncListByDistance(list, path, latitude, longitude) {
-    var geoQuery = FirebaseService.geofire.query({
-      center: [latitude, longitude],
-      radius: 10.5
-    });
+  syncListByDistance(list, path, latitude, longitude): Promise<number> {
+    return new Promise( (resolve, reject) => {
 
+          var geoQuery = FirebaseService.geofire.query({
+            center: [latitude, longitude],
+            radius: 10000.5
+          });
 
-    geoQuery.on('key_entered', function _add(key, location, distance) {
+          geoQuery.on('key_entered', function _add(key, location, distance) {
 
-      let firebaseQuery = FirebaseService.firebase.child(path).child(key);
-      firebaseQuery.once("value", function(data) {
-        let message = data.val();
+            let firebaseQuery = FirebaseService.firebase.child(path).child(key);
+            firebaseQuery.once("value", function(data) {
+              let message = data.val();
 
-        if(message.points > 0)
-        {
-          message.distance = distance;
+              if(message.points > 0)
+              {
+                message.distance = distance;
 
-          var pos = FirebaseService.selectPositionByDistance(list, distance);
-          list.splice(pos, 0, message);
-        }
+                var pos = FirebaseService.selectPositionByDistance(list, distance);
+                list.splice(pos, 0, message);
+              }
+            });
+          });
+
+          geoQuery.on('ready', function () {
+            geoQuery.cancel();
+            resolve(list.length);
+          });
       });
-    });
 
-    geoQuery.on('ready', function () {
-      geoQuery.cancel();
-    });
   }
 
   addLocation(key, latitude, longitude){

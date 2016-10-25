@@ -1,4 +1,4 @@
-import {NavController, Platform, MenuController, App} from 'ionic-angular';
+import {NavController, Platform, MenuController} from 'ionic-angular';
 import {Component} from '@angular/core';
 import {MensagensProximasPage} from '../mensagens-proximas/mensagens-proximas';
 import {MinhasMensagensPage} from '../minhas-mensagens/minhas-mensagens';
@@ -14,7 +14,7 @@ import {MinhasMensagensPage} from '../minhas-mensagens/minhas-mensagens';
 })
 export class PrincipalPage {
 
-  constructor( public app: App, public nav: NavController, platform: Platform, public menu: MenuController) {
+  constructor(public nav: NavController, platform: Platform, public menu: MenuController) {
 
   }
 

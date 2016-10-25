@@ -12,7 +12,7 @@
 
 <ion-content padding class="minhas-mensagens">
 
-  <ion-card *ngFor="let msg of messages" (click)="openDetalhesMensagemPage(msg)">
+  <ion-card *ngFor="#msg of messages" (click)="openDetalhesMensagemPage(msg)">
 
     <ion-card-header>
        Linha {{msg.linhaOnibus}}
@@ -32,5 +32,18 @@
     </ion-item>
 
   </ion-card>
+
+  <ion-card *ngIf="zeroMessages()" (click)="goBack()">
+    <ion-card-header>
+       Você não tem mensagens
+    </ion-card-header>
+
+    <ion-card-content padding-top>
+      <h4>As mensagens que você criar utilizando a opção <span accent><ion-icon name="bus"></ion-icon> Sim, estou no ônibus!</span> serão exibidas aqui.</h4>
+      <h4></h4>
+      <h4 primary-dark text-center>Toque aqui para voltar</h4>
+    </ion-card-content>
+
+   </ion-card>
 
 </ion-content>

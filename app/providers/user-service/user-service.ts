@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Facebook, Geolocation} from 'ionic-native';
 import {User} from '../../models/user/user';
 import {GeoLocation} from '../../models/geolocation/geolocation';
-import {Platform} from 'ionic-angular';
+import {Platform, Events} from 'ionic-angular';
 
 @Injectable()
 export class UserService{
@@ -10,7 +10,7 @@ export class UserService{
   static CURRENT_USER_FIELD = "currentUser";
   static currentUser: User;
 
-  constructor(public platform: Platform){
+  constructor(public platform: Platform, public events: Events){
     this.loadUser();
   }
 
@@ -69,6 +69,7 @@ export class UserService{
           Facebook.api('me/picture?redirect=false&height=60&width=60', []).then( (pic_response) => {
               UserService.currentUser.avatarUrl = pic_response.data.url;
               this.saveUser();
+              this.events.publish('user:login');
               promiseResult(this);
             })
           .catch( (error) => console.log("UserService.login(): " + error.errorMessage) );
