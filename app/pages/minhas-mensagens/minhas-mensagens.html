@@ -12,7 +12,7 @@
 
 <ion-content padding class="minhas-mensagens">
 
-  <ion-card *ngFor="#msg of messages" (click)="openDetalhesMensagemPage(msg)">
+  <ion-card *ngFor="let msg of messages" (click)="openDetalhesMensagemPage(msg)">
 
     <ion-card-header>
        Linha {{msg.linhaOnibus}}

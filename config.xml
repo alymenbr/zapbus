@@ -79,14 +79,14 @@
     <engine name="android" spec="~4.1.1" />
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <plugin name="cordova-plugin-wkwebview-engine" spec="https://github.com/driftyco/cordova-plugin-wkwebview-engine.git" />
-    <plugin name="cordova-plugin-whitelist" spec="~1.2.2" />
-    <plugin name="cordova-plugin-device" spec="~1.1.3" />
-    <plugin name="cordova-plugin-statusbar" spec="~2.1.3" />
-    <plugin name="cordova-plugin-splashscreen" spec="~3.2.2" />
-    <plugin name="cordova-plugin-console" spec="~1.0.4" />
-    <plugin name="ionic-plugin-keyboard" spec="~2.0.1" />
     <plugin name="com.phonegap.plugins.facebookconnect" spec="https://github.com/Telerik-Verified-Plugins/Facebook.git#ae73cc5a1ec125146cf9e4134656db09405c4f2c">
         <variable name="APP_NAME" value="ZapBus" />
         <variable name="APP_ID" value="1976368085920808" />
     </plugin>
+    <plugin name="cordova-plugin-device" spec="~1.1.3" />
+    <plugin name="cordova-plugin-whitelist" spec="~1.2.2" />
+    <plugin name="cordova-plugin-console" spec="~1.0.4" />
+    <plugin name="cordova-plugin-splashscreen" spec="~3.2.2" />
+    <plugin name="cordova-plugin-statusbar" spec="~2.1.3" />
+    <plugin name="ionic-plugin-keyboard" spec="~2.0.1" />
 </widget>
