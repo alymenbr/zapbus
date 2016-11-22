@@ -8,6 +8,8 @@
     "@angular/platform-browser": "2.0.0-rc.4",
     "@angular/platform-browser-dynamic": "2.0.0-rc.4",
     "@angular/router": "^2.0.0-rc.2",
+    "@ionic/storage": "^1.1.6",
+    "angular2-jwt": "^0.1.23",
     "es6-promise": "3.0.2",
     "es6-shim": "^0.35.0",
     "firebase": "^2.4.2",

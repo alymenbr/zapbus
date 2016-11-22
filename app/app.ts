@@ -7,10 +7,15 @@ import {ViewChild} from '@angular/core';
 import {MensagensProximasPage} from './pages/mensagens-proximas/mensagens-proximas';
 import {MinhasMensagensPage} from './pages/minhas-mensagens/minhas-mensagens';
 import {CriarMensagemPage} from './pages/criar-mensagem/criar-mensagem';
+import {ProfilePage} from './pages/profile/profile'
 
 import {UserService} from './providers/user-service/user-service';
 import {MessageService} from './providers/message-service/message-service';
 import {FirebaseService} from './providers/firebase-service/firebase-service';
+
+import {Http} from '@angular/http'
+import {AuthHttp, AuthConfig} from 'angular2-jwt';
+import {AuthService} from './providers/auth-service/auth-service';
 
 @Component({
   templateUrl: 'build/app.html'
@@ -28,7 +33,7 @@ export class MyApp {
 
     if( userService.isLoggedIn() || !platform.is('cordova') ){
       this.updateUser();
-      this.rootPage = PrincipalPage;
+      this.rootPage = ProfilePage;
     }
 
     this.listenToLoginEvents();
@@ -80,4 +85,15 @@ export class MyApp {
 // Pass any providers for your app in the second argument
 // Set any config for your app as the third argument:
 // http://ionicframework.com/docs/v2/api/config/Config/
-ionicBootstrap(MyApp, [FirebaseService, UserService, MessageService, App, MenuController], {});
+ionicBootstrap(MyApp, [ FirebaseService,
+                        UserService,
+                        MessageService,
+                        App,
+                        MenuController,
+                        provide(AuthHttp, {
+                          useFactory: (http) => {
+                            return new AuthHttp(new AuthConfig(), http);
+                          },
+                          deps: [Http]
+                        }),
+                        AuthService], {});
