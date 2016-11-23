@@ -17,6 +17,7 @@ export class AuthService {
   user: User;
 
   constructor(private authHttp: AuthHttp, public events: Events) {
+    debugger;
     // If there is a profile saved in local storage
     this.local.get('profile').then(profile => {
 
@@ -28,6 +29,7 @@ export class AuthService {
   }
 
   public authenticated() {
+    debugger;
     // Check if there's an unexpired JWT
     return tokenNotExpired() && this.user;
   }
@@ -43,6 +45,9 @@ export class AuthService {
       if (err) {
         alert(err);
       }
+
+      debugger;
+
       // If authentication is successful, save the items
       // in local storage
       this.local.set('profile', JSON.stringify(profile));
@@ -74,7 +79,7 @@ export class AuthService {
 
     let newUser = new User(jsonProfile.user_id)
     newUser.name = jsonProfile.name
-    newUser.avatarUrl = jsonProfile.image
+    newUser.avatarUrl = jsonProfile.picture
 
     return newUser
   }
