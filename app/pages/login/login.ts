@@ -1,4 +1,4 @@
-import {Platform} from 'ionic-angular';
+import {Platform, Events} from 'ionic-angular';
 import {NavController} from 'ionic-angular';
 import {Component} from '@angular/core';
 import {UserService} from "../../providers/user-service/user-service";
@@ -15,13 +15,13 @@ import {PrincipalPage} from '../principal/principal';
   templateUrl: 'build/pages/login/login.html',
 })
 export class LoginPage {
-  constructor( public nav: NavController, public userService: UserService, platform: Platform) {
+  constructor( public nav: NavController, public userService: UserService, platform: Platform, public events: Events) {
 
-  }
+    this.events.subscribe('user:login', () => {
+      if( this.userService.isLoggedIn() )
+        this.nav.setRoot(PrincipalPage)
+    });
 
-  ionViewDidEnter() {
-    if( this.userService.isLoggedIn() )
-      this.nav.setRoot(PrincipalPage)
   }
 
   startLogin(){

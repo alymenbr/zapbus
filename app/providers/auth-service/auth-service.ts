@@ -17,7 +17,7 @@ export class AuthService {
   user: User;
 
   constructor(private authHttp: AuthHttp, public events: Events) {
-    debugger;
+
     // If there is a profile saved in local storage
     this.local.get('profile').then(profile => {
 
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   public authenticated() {
-    debugger;
+
     // Check if there's an unexpired JWT
     return tokenNotExpired() && this.user;
   }
@@ -46,7 +46,6 @@ export class AuthService {
         alert(err);
       }
 
-      debugger;
 
       // If authentication is successful, save the items
       // in local storage
