@@ -1,9 +1,10 @@
 // app/services/auth/auth.ts
 
-import {Storage, LocalStorage} from 'ionic-angular';
+import {Storage, LocalStorage, Events} from 'ionic-angular';
 import {AuthHttp, JwtHelper, tokenNotExpired} from 'angular2-jwt';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
+import {User} from '../../models/user/user';
 
 // Avoid name not found warnings
 declare var Auth0Lock: any;
@@ -11,14 +12,16 @@ declare var Auth0Lock: any;
 @Injectable()
 export class AuthService {
   jwtHelper: JwtHelper = new JwtHelper();
-  lock = new Auth0Lock('mIA9bNIiH3NjFpPXFtVkXInx3zlCNduW', 'alymenbr.auth0.com');
+  lock = new Auth0Lock('cm2vPMDgI1e75QAcPY8wkOqhy7hFeXRN', 'alymenbr.auth0.com');
   local: Storage = new Storage(LocalStorage);
-  user: Object;
+  user: User;
 
-  constructor(private authHttp: AuthHttp) {
+  constructor(private authHttp: AuthHttp, public events: Events) {
     // If there is a profile saved in local storage
     this.local.get('profile').then(profile => {
-      this.user = JSON.parse(profile);
+
+      let json = JSON.parse(profile)
+      this.user = this.parseUser(json);
     }).catch(error => {
       console.log(error);
     });
@@ -26,7 +29,7 @@ export class AuthService {
 
   public authenticated() {
     // Check if there's an unexpired JWT
-    return tokenNotExpired();
+    return tokenNotExpired() && this.user;
   }
 
   public login() {
@@ -45,7 +48,13 @@ export class AuthService {
       this.local.set('profile', JSON.stringify(profile));
       this.local.set('id_token', token);
       this.local.set('refresh_token', refreshToken);
-      this.user = profile;
+
+      this.user = this.parseUser(profile);
+
+      // Publish the Update
+      this.events.publish('user:login')
+
+      this.lock.hide()
     });
   }
 
@@ -54,5 +63,19 @@ export class AuthService {
     this.local.remove('id_token');
     this.local.remove('refresh_token');
     this.user = null;
+
+    // Publish the Update
+    this.events.publish('user:login')
+  }
+
+  public parseUser(jsonProfile): User {
+    if(!jsonProfile)
+      return null
+
+    let newUser = new User(jsonProfile.user_id)
+    newUser.name = jsonProfile.name
+    newUser.avatarUrl = jsonProfile.image
+
+    return newUser
   }
 }

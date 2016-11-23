@@ -19,11 +19,13 @@ export class LoginPage {
 
   }
 
-  startFacebookLogin(){
-    this.userService.login().then( (result) => {
-      this.nav.setRoot(PrincipalPage);
-    })
-    .catch( (errorMessage) => console.log(errorMessage) );
+  ionViewDidEnter() {
+    if( this.userService.isLoggedIn() )
+      this.nav.setRoot(PrincipalPage)
+  }
+
+  startLogin(){
+    this.userService.login()
   }
 
 }

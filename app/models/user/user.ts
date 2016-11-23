@@ -1,10 +1,10 @@
 
 export class User{
 
-  public name: string
-  public avatarUrl: string;
+  public name: any
+  public avatarUrl: any;
 
-  constructor(public facebookId: string){
+  constructor(public facebookId: any){
 
   }
 

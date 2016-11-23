@@ -4,31 +4,17 @@ import {User} from '../../models/user/user';
 import {GeoLocation} from '../../models/geolocation/geolocation';
 import {Platform, Events} from 'ionic-angular';
 
+import {AuthService} from '../auth-service/auth-service';
+
 @Injectable()
 export class UserService{
 
-  static CURRENT_USER_FIELD = "currentUser";
-  static currentUser: User;
+  constructor(public platform: Platform, public auth: AuthService){
 
-  constructor(public platform: Platform, public events: Events){
-    this.loadUser();
   }
 
   isLoggedIn(){
-    return UserService.currentUser? true: false;
-  }
-
-  loadUser(){
-    if(!UserService.currentUser && window.localStorage[UserService.CURRENT_USER_FIELD])
-      UserService.currentUser = JSON.parse(window.localStorage[UserService.CURRENT_USER_FIELD]);
-
-    if( !this.platform.is('cordova') ){
-      let defaultUser = new User("980426748671892");
-      defaultUser.name = "Pedro";
-      defaultUser.avatarUrl = "https://graph.facebook.com/67563683055/picture?type=large&w‌​idth=60&height=60";
-      UserService.currentUser = defaultUser;
-    }
-
+    return this.auth.authenticated();
   }
 
   getUserLocation(): Promise<GeoLocation> {
@@ -49,47 +35,32 @@ export class UserService{
   }
 
   logout(){
-      window.localStorage[UserService.CURRENT_USER_FIELD] = null;
-      Facebook.logout();
+      this.auth.logout()
   }
 
-  login(): Promise<User>{
-    var promiseResult;
-    var promiseError;
-    let promise = new Promise<User>((resolve, reject) => {promiseResult = resolve; promiseError = reject});
+  login() {
+    this.auth.login()
 
-    let callLogin = Facebook.login(['public_profile']);
-
-    callLogin.then( (response) => {
-        UserService.currentUser = new User(response.authResponse.userID);
-
-        Facebook.api('me?fields=name,email', ['public_profile']).then( (response) => {
-          UserService.currentUser.name = response.name;
-
-          Facebook.api('me/picture?redirect=false&height=60&width=60', []).then( (pic_response) => {
-              UserService.currentUser.avatarUrl = pic_response.data.url;
-              this.saveUser();
-              this.events.publish('user:login');
-              promiseResult(this);
-            })
-          .catch( (error) => console.log("UserService.login(): " + error.errorMessage) );
-        })
-        .catch( (error) => console.log("UserService.login(): " + error.errorMessage) );
-    })
-    .catch( (error) => {
-      console.log("UserService.login(): " + error.errorMessage);
-      promiseError(error.errorMessage);
-    });
-
-    return promise;
-  }
-
-  private saveUser(){
-    window.localStorage[UserService.CURRENT_USER_FIELD] = JSON.stringify(UserService.currentUser);
+    // .then( user => {
+    //
+    //   let existingUser = new User( this.auth.user.sub );
+    //   existingUser.name = this.auth.user.name;
+    //   existingUser.avatarUrl = this.auth.user.picture;
+    //   UserService.currentUser = existingUser;
+    //
+    //   // Publish the Login Event
+    //   this.events.publish('user:login');
+    //
+    //   // Call the next app page
+    //   currentNav.setRoot(nextPage);
+    // })
+    // .catch( (error) => {
+    //   console.log("UserService.login(): " + error.errorMessage);
+    // });
   }
 
   getCurrentUser(): User {
-    return UserService.currentUser;
+    return this.auth.user;
   }
 
   setMap(mapVar: any, tagId: string, latitude: any, longitude: any) {

@@ -17,6 +17,7 @@ import {Http} from '@angular/http'
 import {AuthHttp, AuthConfig} from 'angular2-jwt';
 import {AuthService} from './providers/auth-service/auth-service';
 
+
 @Component({
   templateUrl: 'build/app.html'
 })
@@ -31,11 +32,12 @@ export class MyApp {
 
   constructor(public zone: NgZone, public events: Events, public platform: Platform, public userService: UserService, public messageService: MessageService, public app: App, public menu: MenuController) {
 
+/*
     if( userService.isLoggedIn() || !platform.is('cordova') ){
       this.updateUser();
-      this.rootPage = ProfilePage;
+      this.rootPage = PrincipalPage;
     }
-
+*/
     this.listenToLoginEvents();
 
     platform.ready().then(() => {
@@ -91,9 +93,9 @@ ionicBootstrap(MyApp, [ FirebaseService,
                         App,
                         MenuController,
                         provide(AuthHttp, {
-                          useFactory: (http) => {
-                            return new AuthHttp(new AuthConfig(), http);
-                          },
-                          deps: [Http]
-                        }),
+                              useFactory: (http) => {
+                                return new AuthHttp(new AuthConfig(), http);
+                              },
+                              deps: [Http]
+                            }),
                         AuthService], {});
