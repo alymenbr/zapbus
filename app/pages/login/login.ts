@@ -24,6 +24,11 @@ export class LoginPage {
 
   }
 
+  ionViewWillEnter() {
+    if( this.userService.isLoggedIn() )
+      this.nav.setRoot(PrincipalPage)
+  }
+
   startLogin(){
     this.userService.login()
   }

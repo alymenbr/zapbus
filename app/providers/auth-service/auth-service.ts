@@ -23,6 +23,10 @@ export class AuthService {
 
       let json = JSON.parse(profile)
       this.user = this.parseUser(json);
+
+      // Publish the Update
+      this.events.publish('user:login')
+
     }).catch(error => {
       console.log(error);
     });
@@ -31,7 +35,7 @@ export class AuthService {
   public authenticated() {
 
     // Check if there's an unexpired JWT
-    return tokenNotExpired() && this.user;
+    return this.user;
   }
 
   public login() {
@@ -42,14 +46,16 @@ export class AuthService {
       socialBigButtons: true,
       disableResetAction: true,
       closable: false,
-      
+      loginAfterSignup: true,
+      sso: false,
+
       authParams: {
         scope: 'openid offline_access',
         device: 'Mobile device'
       }
     }, (err, profile, token, accessToken, state, refreshToken) => {
       if (err) {
-        alert(err);
+        console.log(err);
       }
 
 
@@ -64,7 +70,7 @@ export class AuthService {
       // Publish the Update
       this.events.publish('user:login')
 
-      this.lock.hide()
+      // this.lock.hide()
     });
   }
 
@@ -74,8 +80,6 @@ export class AuthService {
     this.local.remove('refresh_token');
     this.user = null;
 
-    // Publish the Update
-    this.events.publish('user:login')
   }
 
   public parseUser(jsonProfile): User {

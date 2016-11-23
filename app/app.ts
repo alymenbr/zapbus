@@ -87,6 +87,8 @@ export class MyApp {
 // Pass any providers for your app in the second argument
 // Set any config for your app as the third argument:
 // http://ionicframework.com/docs/v2/api/config/Config/
+let prodMode: boolean = window.hasOwnProperty('cordova');
+
 ionicBootstrap(MyApp, [ FirebaseService,
                         UserService,
                         MessageService,
@@ -98,4 +100,6 @@ ionicBootstrap(MyApp, [ FirebaseService,
                               },
                               deps: [Http]
                             }),
-                        AuthService], {});
+                        AuthService],
+                        {prodMode: prodMode}
+                      );
