@@ -37,6 +37,12 @@ export class AuthService {
   public login() {
     // Show the Auth0 Lock widget
     this.lock.show({
+      dict: 'pt-br',
+      icon: 'img/zapbus_h58.png',
+      socialBigButtons: true,
+      disableResetAction: true,
+      closable: false,
+      
       authParams: {
         scope: 'openid offline_access',
         device: 'Mobile device'
